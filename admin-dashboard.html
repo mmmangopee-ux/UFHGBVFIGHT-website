@@ -1,0 +1,808 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .sidebar-menu {
+            list-style: none;
+        }
+        .sidebar-menu li {
+            margin: 10px 0;
+        }
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 15px;
+            color: #6A0DAD;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #6A0DAD;
+            color: white;
+        }
+        .main-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #6A0DAD;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6A0DAD;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .data-table th, .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .data-table th {
+            background: #6A0DAD;
+            color: white;
+        }
+        .data-table tr:hover {
+            background: #f5f5f5;
+        }
+        .btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #8A2BE2;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .alert-banner {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="dashboard-grid">
+        <div class="sidebar">
+            <h3 class="purple-accent">Admin Menu</h3>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" onclick="showTab('dashboard')">📊 Dashboard</a></li>
+                <li><a href="#" onclick="showTab('reports')">📝 Reports</a></li>
+                <li><a href="#" onclick="showTab('users')">👥 Users</a></li>
+                <li><a href="#" onclick="showTab('resources')">📚 Resources</a></li>
+                <li><a href="#" onclick="showTab('analytics')">📈 Analytics</a></li>
+                <li><a href="#" onclick="showTab('settings')">⚙️ Settings</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+            </ul>
+            
+            <div style="margin-top: 30px; padding: 15px; background: #e8f4fd; border-radius: 5px;">
+                <p><strong>Quick Actions</strong></p>
+                <button class="btn" onclick="exportData()">Export Data</button>
+                <button class="btn" onclick="backupSystem()">Backup System</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <h2 class="purple-accent">📊 System Overview</h2>
+                
+                <div class="alert-banner">
+                    <strong>⚠️ System Notice:</strong> 3 new reports require review. 2 high-priority cases identified.
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">47</div>
+                        <p>New Reports (7 days)</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <p>Active Support Cases</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <p>Shelter Occupancy</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">89%</div>
+                        <p>Response Rate</p>
+                    </div>
+                </div>
+
+                <h3 class="purple-accent">Recent Activity</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:30 AM</td>
+                            <td>System</td>
+                            <td>New Report</td>
+                            <td>High priority case #2387</td>
+                        </tr>
+                        <tr>
+                            <td>09:15 AM</td>
+                            <td>Admin User</td>
+                            <td>Resource Update</td>
+                            <td>Added new shelter contact</td>
+                        </tr>
+                        <tr>
+                            <td>Yesterday</td>
+                            <td>Volunteer</td>
+                            <td>Case Follow-up</td>
+                            <td>Case #2345 status updated</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="purple-accent">Quick Tasks</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div class="stat-card">
+                        <p><strong>Review Reports</strong></p>
+                        <button class="btn">View Pending (3)</button>
+                    </div>
+                    <div class="stat-card">
+                        <p><strong>Update Resources</strong></p>
+                        <button class="btn">Manage Resources</button>
+                    </div>
+                    <div class="stat-card">
+                        <p><strong>System Health</strong></p>
+                        <button class="btn">Check Status</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports" class="tab-content">
+                <h2 class="purple-accent">📝 Report Management</h2>
+                
+                <input type="text" class="search-bar" placeholder="Search reports...">
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#2387</td>
+                            <td>Domestic Violence</td>
+                            <td>2024-01-15</td>
+                            <td><span style="color: #dc3545;">Pending</span></td>
+                            <td><span style="color: #dc3545;">High</span></td>
+                            <td>
+                                <button class="btn">Review</button>
+                                <button class="btn">Assign</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#2386</td>
+                            <td>Emotional Abuse</td>
+                            <td>2024-01-14</td>
+                            <td><span style="color: #28a745;">In Progress</span></td>
+                            <td><span style="color: #ffc107;">Medium</span></td>
+                            <td>
+                                <button class="btn">View</button>
+                                <button class="btn">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#2385</td>
+                            <td>Sexual Assault</td>
+                            <td>2024-01-14</td>
+                            <td><span style="color: #28a745;">Completed</span></td>
+                            <td><span style="color: #dc3545;">High</span></td>
+                            <td>
+                                <button class="btn">View</button>
+                                <button class="btn">Archive</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 20px;">
+                    <button class="btn">Export All Reports</button>
+                    <button class="btn">Generate Summary</button>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users" class="tab-content">
+                <h2 class="purple-accent">👥 User Management</h2>
+
+                <div style="display: flex; gap: 10px; margin: 15px 0;">
+                    <button class="btn">Add New User</button>
+                    <button class="btn">Import Users</button>
+                    <button class="btn">Export Users</button>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>admin_user</td>
+                            <td>Administrator</td>
+                            <td>2024-01-15 10:30</td>
+                            <td><span style="color: #28a745;">Active</span></td>
+                            <td>
+                                <button class="btn">Edit</button>
+                                <button class="btn">Reset Password</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>volunteer_jane</td>
+                            <td>Volunteer</td>
+                            <td>2024-01-14 15:20</td>
+                            <td><span style="color: #28a745;">Active</span></td>
+                            <td>
+                                <button class="btn">Edit</button>
+                                <button class="btn">View Activity</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>counselor_mike</td>
+                            <td>Counselor</td>
+                            <td>2024-01-13 09:15</td>
+                            <td><span style="color: #6c757d;">Inactive</span></td>
+                            <td>
+                                <button class="btn">Edit</button>
+                                <button class="btn">Activate</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources" class="tab-content">
+                <h2 class="purple-accent">📚 Resource Management</h2>
+
+                <div style="display: flex; gap: 10px; margin: 15px 0;">
+                    <button class="btn">Add New Resource</button>
+                    <button class="btn">Update Contacts</button>
+                    <button class="btn">Verify All</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div class="stat-card">
+                        <h4>Shelters</h4>
+                        <p>15 active shelters</p>
+                        <button class="btn">Manage</button>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Legal Services</h4>
+                        <p>8 partner organizations</p>
+                        <button class="btn">Manage</button>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Counseling</h4>
+                        <p>12 service providers</p>
+                        <button class="btn">Manage</button>
+                    </div>
+                </div>
+
+                <h3 class="purple-accent">Resource Verification Status</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Type</th>
+                            <th>Last Verified</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Safe Haven Shelter</td>
+                            <td>Shelter</td>
+                            <td>2024-01-10</td>
+                            <td><span style="color: #28a745;">Verified</span></td>
+                            <td><button class="btn">Re-verify</button></td>
+                        </tr>
+                        <tr>
+                            <td>Legal Aid Johannesburg</td>
+                            <td>Legal</td>
+                            <td>2024-01-05</td>
+                            <td><span style="color: #ffc107;">Pending</span></td>
+                            <td><button class="btn">Verify</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics" class="tab-content">
+                <h2 class="purple-accent">📈 System Analytics</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1,247</div>
+                        <p>Total Reports</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">89%</div>
+                        <p>Response Rate</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">34%</div>
+                        <p>Mobile Usage</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2.3min</div>
+                        <p>Avg. Session</p>
+                    </div>
+                </div>
+
+                <h3 class="purple-accent">Report Trends</h3>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
+                    <p><strong>Monthly Report Volume</strong></p>
+                    <p>Chart visualization would appear here</p>
+                    <button class="btn">Download Full Report</button>
+                </div>
+
+                <h3 class="purple-accent">User Activity</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th>Views</th>
+                            <th>Avg. Time</th>
+                            <th>Bounce Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Risk Assessment</td>
+                            <td>1,234</td>
+                            <td>4.2min</td>
+                            <td>23%</td>
+                        </tr>
+                        <tr>
+                            <td>Safety Plan</td>
+                            <td>987</td>
+                            <td>3.8min</td>
+                            <td>18%</td>
+                        </tr>
+                        <tr>
+                            <td>Emergency Contacts</td>
+                            <td>1,567</td>
+                            <td>2.1min</td>
+                            <td>45%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <h2 class="purple-accent">⚙️ System Settings</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 25px 0;">
+                    <div class="stat-card">
+                        <h4>Security Settings</h4>
+                        <button class="btn">Update Password Policy</button>
+                        <button class="btn">Manage API Keys</button>
+                        <button class="btn">Security Logs</button>
+                    </div>
+
+                    <div class="stat-card">
+                        <h4>Notification Settings</h4>
+                        <button class="btn">Email Templates</button>
+                        <button class="btn">Alert Thresholds</button>
+                        <button class="btn">Test Notifications</button>
+                    </div>
+
+                    <div class="stat-card">
+                        <h4>System Maintenance</h4>
+                        <button class="btn">Clear Cache</button>
+                        <button class="btn">Database Optimize</button>
+                        <button class="btn">System Update</button>
+                    </div>
+                </div>
+
+                <h3 class="purple-accent">Backup & Recovery</h3>
+                <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <p><strong>Last Backup:</strong> 2024-01-14 02:00</p>
+                    <p><strong>Backup Size:</strong> 245 MB</p>
+                    <button class="btn">Create Backup Now</button>
+                    <button class="btn">Restore from Backup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('admin-dashboard.html');
+                analytics.trackFeatureUse('admin_dashboard_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Admin Dashboard Functions
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Update active menu item
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse(`admin_tab_${tabName}`);
+            }
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logging out...');
+                // Redirect to login page
+                window.location.href = 'login.html';
+                
+                // ANALYTICS TRACKING - INTEGRATED
+                if (typeof analytics !== 'undefined') {
+                    analytics.trackFeatureUse('admin_logout');
+                }
+            }
+        }
+        
+        function exportData() {
+            alert('Exporting system data...');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('admin_data_export');
+            }
+        }
+        
+        function backupSystem() {
+            alert('Creating system backup...');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('admin_system_backup');
+            }
+        }
+    </script>
+</body>
+</html>
