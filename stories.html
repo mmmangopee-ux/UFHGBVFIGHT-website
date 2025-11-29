@@ -1,424 +1,617 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Share Your Story - GBV Safe Corner</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#6A0DAD">
-    
-    <!-- ANALYTICS INTEGRATED -->
+    <title>Survivor Stories | GBV Safe Corner</title>
+    <meta name="description" content="Read powerful stories of survival and resilience from GBV survivors. Find hope and inspiration in shared experiences.">
+    <meta property="og:title" content="Survivor Stories | GBV Safe Corner">
+    <meta property="og:description" content="Read powerful stories of survival and resilience from GBV survivors.">
+    <meta property="og:image" content="https://gbvsafecorner.org/assets/images/og-stories.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Header (consistent with other pages) -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="GBV Safe Corner" width="180" height="50">
+                </a>
+            </div>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="emergency-services.html">Emergency</a></li>
+                    <li><a href="safety-plan.html">Safety Plan</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="stories.html" class="active">Stories</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <h1>Survivor Stories</h1>
+                <p class="hero-subtitle">Stories of resilience, healing, and hope from survivors of gender-based violence</p>
+            </div>
+        </section>
+
+        <!-- Content Warning -->
+        <section class="content-warning">
+            <div class="container">
+                <div class="warning-card">
+                    <div class="warning-icon">⚠️</div>
+                    <div class="warning-content">
+                        <h3>Content Warning</h3>
+                        <p>These stories contain descriptions of gender-based violence that may be triggering. Please prioritize your wellbeing while reading.</p>
+                        <button class="btn-secondary" id="hideStoriesBtn">Hide Stories Content</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share Your Story CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>Share Your Story</h2>
+                    <p>Your story has power. By sharing your experience, you can help others feel less alone and contribute to breaking the silence around gender-based violence.</p>
+                    <div class="cta-buttons">
+                        <a href="#share-form" class="btn-primary">Share Anonymously</a>
+                        <a href="support.html" class="btn-secondary">Get Support First</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stories Grid -->
+        <section class="stories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Stories of Strength and Survival</h2>
+                    <p>These anonymous stories are shared by survivors to inspire hope and connection</p>
+                </div>
+
+                <div class="stories-grid" id="storiesContainer">
+                    <!-- Stories will be loaded dynamically -->
+                </div>
+
+                <div class="stories-loading">
+                    <div class="spinner"></div>
+                    <p>Loading stories...</p>
+                </div>
+
+                <div class="stories-empty" style="display: none;">
+                    <p>No stories available at the moment. Be the first to share your story.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share Story Form -->
+        <section class="share-section" id="share-form">
+            <div class="container">
+                <div class="share-form-container">
+                    <h2>Share Your Story Anonymously</h2>
+                    
+                    <div class="privacy-notice">
+                        <h3>🔒 Your Privacy is Protected</h3>
+                        <ul>
+                            <li>No personal information is collected or stored</li>
+                            <li>Complete anonymity - we don't ask for your name, email, or location</li>
+                            <li>You control how much or how little you share</li>
+                            <li>Moderated content to ensure a safe environment for all</li>
+                        </ul>
+                    </div>
+
+                    <form id="storySubmissionForm" class="story-form">
+                        <div class="form-group">
+                            <label for="storyType">Type of Story</label>
+                            <select id="storyType" name="storyType" required>
+                                <option value="">Select type...</option>
+                                <option value="survival">Story of Survival</option>
+                                <option value="healing">Healing Journey</option>
+                                <option value="hope">Message of Hope</option>
+                                <option value="advice">Words of Wisdom</option>
+                                <option value="support">Support for Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="storyTitle">Story Title (Optional)</label>
+                            <input type="text" id="storyTitle" name="storyTitle" placeholder="A brief title for your story">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="storyContent">Your Story *</label>
+                            <textarea id="storyContent" name="storyContent" rows="8" required 
+                                      placeholder="Share your experience, journey, or message of hope. Remember to avoid any identifying details."></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span> characters
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="triggerWarning">Trigger Warnings</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="triggerWarning" value="violence"> Physical Violence</label>
+                                <label><input type="checkbox" name="triggerWarning" value="emotional"> Emotional Abuse</label>
+                                <label><input type="checkbox" name="triggerWarning" value="sexual"> Sexual Violence</label>
+                                <label><input type="checkbox" name="triggerWarning" value="stalking"> Stalking/Harassment</label>
+                                <label><input type="checkbox" name="triggerWarning" value="none"> No specific triggers</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group consent-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <span class="checkmark"></span>
+                                I understand this story will be shared anonymously and may help others who are experiencing similar situations
+                            </label>
+                        </div>
+
+                        <div class="form-group consent-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="support" name="support" required>
+                                <span class="checkmark"></span>
+                                I have support available if I need it while sharing my story
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Share Story Anonymously</button>
+                            <button type="button" class="btn-secondary" id="saveDraftBtn">Save as Draft</button>
+                        </div>
+                    </form>
+
+                    <div class="support-resources">
+                        <h3>Need Support Before Sharing?</h3>
+                        <p>If you're feeling overwhelmed or need to talk to someone:</p>
+                        <div class="resource-links">
+                            <a href="support.html" class="resource-link">24/7 Support Services</a>
+                            <a href="safety-plan.html" class="resource-link">Safety Planning</a>
+                            <a href="counseling.html" class="resource-link">Professional Counseling</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (consistent with other pages) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GBV Safe Corner</h3>
+                    <p>A safe space for survivors of gender-based violence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="emergency-services.html">Emergency Help</a></li>
+                        <li><a href="safety-plan.html">Safety Planning</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">24/7 Support</a></li>
+                        <li><a href="counseling.html">Counseling</a></li>
+                        <li><a href="shelter-finder.html">Find Shelter</a></li>
+                        <li><a href="legal-rights.html">Legal Rights</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GBV Safe Corner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Exit Button -->
+    <div class="emergency-exit">
+        <button class="emergency-exit-btn" onclick="emergencyRedirect()">
+            🚨 Quick Exit
+        </button>
+    </div>
+
+    <script src="script.js"></script>
     <script src="analytics.js"></script>
-    <script src="navigation.js"></script>
-    
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: Arial, sans-serif; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 20px; 
-            background-color: #f8f8f8; 
-            line-height: 1.6; 
-        }
-        .header { 
-            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
-            color: white; 
-            padding: 30px; 
-            text-align: center; 
-            border-radius: 15px; 
-            margin-bottom: 20px; 
-        }
-        .logo-text {
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-        .logo-text span {
-            display: block;
-        }
-        
-        .content-section { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            margin: 25px 0; 
-            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
-            text-align: center;
-        }
-        .form-button { 
-            background: #6A0DAD; 
-            color: white; 
-            padding: 15px 40px; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-size: 18px; 
-            display: inline-block; 
-            margin: 10px; 
-            transition: all 0.3s ease;
-            border: 2px solid #6A0DAD;
-            font-weight: bold;
-        }
-        .form-button:hover {
-            background: #8A2BE2;
-            border-color: #8A2BE2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.3);
-        }
-        .privacy-notice {
-            background: #e8f4fd;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: left;
-            border-left: 4px solid #6A0DAD;
-        }
-        .story-examples {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .story-example {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-            border: 1px solid #e0e0e0;
-        }
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-        .benefit-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid #e8f4fd;
-        }
-        
-        /* Enhanced Emergency Exit */
-        .emergency-exit {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-        }
-        .emergency-exit-btn {
-            background: #FF6B6B;
-            color: white;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        .emergency-exit-btn:hover {
-            background: #ff5252;
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
-        }
-        
-        /* Language Selector */
-        #languageSelector {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 2px solid #6A0DAD;
-            background: white;
-            color: #6A0DAD;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        #languageSelector:hover {
-            background: #6A0DAD;
-            color: white;
-        }
-        
-        /* Accessibility */
-        :focus {
-            outline: 3px solid #6A0DAD;
-            outline-offset: 2px;
+    <script>
+        // Stories page specific functionality
+        class StoriesManager {
+            constructor() {
+                this.stories = [];
+                this.currentPage = 1;
+                this.storiesPerPage = 6;
+                this.init();
+            }
+
+            init() {
+                this.loadStories();
+                this.setupEventListeners();
+                this.setupFormValidation();
+                
+                // Track page view
+                if (typeof analytics !== 'undefined') {
+                    analytics.trackPageView('stories');
+                }
+            }
+
+            async loadStories() {
+                try {
+                    // Show loading state
+                    document.querySelector('.stories-loading').style.display = 'block';
+                    
+                    // In a real implementation, this would fetch from your database
+                    // const response = await fetchFromSupabase('stories', {
+                    //     query: { 
+                    //         is_approved: 'eq.true',
+                    //         order: 'created_at.desc'
+                    //     }
+                    // });
+                    
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Sample stories for demonstration
+                    this.stories = [
+                        {
+                            id: 1,
+                            title: "Finding My Voice Again",
+                            content: "After years of silence, sharing my story helped me reclaim my identity and realize I wasn't alone in this journey.",
+                            type: "survival",
+                            triggerWarnings: ["emotional"],
+                            createdAt: "2024-01-15"
+                        },
+                        {
+                            id: 2,
+                            title: "One Day at a Time",
+                            content: "Healing isn't linear, but every small step forward is a victory. Today I'm stronger than yesterday.",
+                            type: "healing",
+                            triggerWarnings: ["violence"],
+                            createdAt: "2024-01-10"
+                        }
+                    ];
+                    
+                    this.displayStories();
+                    
+                } catch (error) {
+                    console.error('Error loading stories:', error);
+                    this.showError('Failed to load stories');
+                } finally {
+                    document.querySelector('.stories-loading').style.display = 'none';
+                }
+            }
+
+            displayStories() {
+                const container = document.getElementById('storiesContainer');
+                
+                if (this.stories.length === 0) {
+                    document.querySelector('.stories-empty').style.display = 'block';
+                    return;
+                }
+
+                container.innerHTML = this.stories.map(story => `
+                    <div class="story-card" data-story-id="${story.id}">
+                        <div class="story-header">
+                            <span class="story-type">${this.getTypeLabel(story.type)}</span>
+                            ${story.triggerWarnings.length > 0 ? `
+                                <span class="trigger-warning">⚠️ Contains: ${story.triggerWarnings.join(', ')}</span>
+                            ` : ''}
+                        </div>
+                        <h3 class="story-title">${story.title}</h3>
+                        <div class="story-content">
+                            <p>${story.content}</p>
+                        </div>
+                        <div class="story-actions">
+                            <button class="btn-text" onclick="storiesManager.reactToStory(${story.id}, 'heart')">💜</button>
+                            <button class="btn-text" onclick="storiesManager.reactToStory(${story.id}, 'support')">🤝</button>
+                            <button class="btn-text" onclick="storiesManager.shareStory(${story.id})">📤</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            getTypeLabel(type) {
+                const types = {
+                    survival: 'Survival Story',
+                    healing: 'Healing Journey',
+                    hope: 'Message of Hope',
+                    advice: 'Words of Wisdom',
+                    support: 'Support Message'
+                };
+                return types[type] || 'Story';
+            }
+
+            setupEventListeners() {
+                // Content warning toggle
+                document.getElementById('hideStoriesBtn').addEventListener('click', () => {
+                    document.querySelector('.stories-section').style.display = 'none';
+                    if (typeof analytics !== 'undefined') {
+                        analytics.trackFeatureUse('stories_content_hidden');
+                    }
+                });
+
+                // Character count for story content
+                document.getElementById('storyContent').addEventListener('input', (e) => {
+                    document.getElementById('charCount').textContent = e.target.value.length;
+                });
+
+                // Save draft functionality
+                document.getElementById('saveDraftBtn').addEventListener('click', () => {
+                    this.saveDraft();
+                });
+            }
+
+            setupFormValidation() {
+                const form = document.getElementById('storySubmissionForm');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitStory();
+                });
+            }
+
+            async submitStory() {
+                const form = document.getElementById('storySubmissionForm');
+                const formData = new FormData(form);
+                
+                const storyData = {
+                    type: formData.get('storyType'),
+                    title: formData.get('storyTitle') || 'Untitled Story',
+                    content: formData.get('storyContent'),
+                    triggerWarnings: Array.from(formData.getAll('triggerWarning')),
+                    consent: formData.get('consent') === 'on',
+                    support: formData.get('support') === 'on',
+                    submittedAt: new Date().toISOString(),
+                    is_approved: false // Requires moderation
+                };
+
+                try {
+                    // Submit to your database
+                    // await submitToSupabase('stories', storyData);
+                    
+                    // For demo, simulate success
+                    this.showSubmissionSuccess();
+                    
+                    if (typeof analytics !== 'undefined') {
+                        analytics.trackFeatureUse('story_submitted');
+                    }
+                    
+                } catch (error) {
+                    this.showError('Failed to submit story. Please try again.');
+                }
+            }
+
+            showSubmissionSuccess() {
+                const form = document.getElementById('storySubmissionForm');
+                form.innerHTML = `
+                    <div class="submission-success">
+                        <div class="success-icon">✅</div>
+                        <h3>Thank You for Sharing Your Story</h3>
+                        <p>Your story has been submitted anonymously and will be reviewed before publishing.</p>
+                        <p><em>Your courage in sharing helps break the silence and supports others on their journey.</em></p>
+                        <button class="btn-primary" onclick="window.location.reload()">Share Another Story</button>
+                    </div>
+                `;
+            }
+
+            saveDraft() {
+                const content = document.getElementById('storyContent').value;
+                if (content.trim()) {
+                    localStorage.setItem('storyDraft', content);
+                    this.showMessage('Draft saved locally');
+                    
+                    if (typeof analytics !== 'undefined') {
+                        analytics.trackFeatureUse('story_draft_saved');
+                    }
+                }
+            }
+
+            loadDraft() {
+                const draft = localStorage.getItem('storyDraft');
+                if (draft) {
+                    document.getElementById('storyContent').value = draft;
+                    document.getElementById('charCount').textContent = draft.length;
+                    this.showMessage('Draft loaded');
+                }
+            }
+
+            reactToStory(storyId, reaction) {
+                // Track reactions
+                if (typeof analytics !== 'undefined') {
+                    analytics.trackFeatureUse(`story_${reaction}_reaction`);
+                }
+                
+                this.showMessage('Thank you for your support');
+            }
+
+            shareStory(storyId) {
+                const story = this.stories.find(s => s.id === storyId);
+                if (story && navigator.share) {
+                    navigator.share({
+                        title: story.title,
+                        text: story.content.substring(0, 100) + '...',
+                        url: window.location.href
+                    });
+                }
+                
+                if (typeof analytics !== 'undefined') {
+                    analytics.trackFeatureUse('story_shared');
+                }
+            }
+
+            showMessage(message) {
+                // Implementation for showing temporary messages
+                const messageEl = document.createElement('div');
+                messageEl.className = 'flash-message';
+                messageEl.textContent = message;
+                document.body.appendChild(messageEl);
+                
+                setTimeout(() => {
+                    messageEl.remove();
+                }, 3000);
+            }
+
+            showError(message) {
+                this.showMessage(`❌ ${message}`);
+            }
         }
 
-        /* Mobile Responsive */
+        // Initialize stories manager when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.storiesManager = new StoriesManager();
+        });
+
+        // Enhanced emergency redirect
+        function emergencyRedirect() {
+            // Clear any sensitive data
+            localStorage.removeItem('storyDraft');
+            sessionStorage.clear();
+            
+            // Redirect to safe page
+            window.location.href = 'https://www.google.com/search?q=weather';
+            
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('emergency_exit_used');
+            }
+        }
+
+        // Keyboard shortcut for emergency exit
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                emergencyRedirect();
+            }
+        });
+    </script>
+
+    <style>
+        /* Additional styles for stories page */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .story-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.1);
+        }
+
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .story-type {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .trigger-warning {
+            font-size: 0.75rem;
+            color: var(--warning-color);
+        }
+
+        .story-title {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .story-content {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-text:hover {
+            background: var(--bg-light);
+        }
+
+        .story-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .submission-success {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
         @media (max-width: 768px) {
-            .story-examples {
+            .stories-grid {
                 grid-template-columns: 1fr;
             }
             
-            .benefits-grid {
+            .checkbox-group {
                 grid-template-columns: 1fr;
-            }
-            
-            .form-button {
-                display: block;
-                margin: 10px 0;
             }
         }
     </style>
-</head>
-<body>
-    <div class="header">
-        <div class="logo-text">
-            <span>GBV</span>
-            <span>SAFE</span>
-            <span>CORNER</span>
-        </div>
-        <p>Share Your Story</p>
-    </div>
-
-    <!-- Navigation auto-loaded here -->
-
-    <div class="content-section">
-        <h2>💬 Share Your Story Anonymously</h2>
-        <p>Your story has power. By sharing your experience, you can help others feel less alone and contribute to breaking the silence around gender-based violence.</p>
-        
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <h4>🎭 Complete Anonymity</h4>
-                <p>No names, no tracking, no identification</p>
-            </div>
-            <div class="benefit-card">
-                <h4>💪 Empower Others</h4>
-                <p>Your story gives hope and strength to others</p>
-            </div>
-            <div class="benefit-card">
-                <h4>🔒 Safe Space</h4>
-                <p>Moderated community with privacy protection</p>
-            </div>
-            <div class="benefit-card">
-                <h4>🌟 Make a Difference</h4>
-                <p>Help break the stigma and silence</p>
-            </div>
-        </div>
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7gRYD0fu4JlouNpfpbMwXjIiAEb8SPF3SbhMdrJHbXWedeA/viewform?usp=header" 
-           target="_blank" 
-           class="form-button"
-           onclick="trackStorySubmission()">
-           📖 Share Your Story Anonymously
-        </a>
-
-        <div class="privacy-notice">
-            <h4>🔒 Your Privacy is Protected</h4>
-            <ul>
-                <li><strong>No personal information</strong> is collected or stored</li>
-                <li><strong>Complete anonymity</strong> - we don't ask for your name, email, or location</li>
-                <li><strong>Secure submission</strong> through encrypted Google Forms</li>
-                <li><strong>Moderated content</strong> to ensure a safe environment for all</li>
-                <li><strong>You control</strong> how much or how little you share</li>
-            </ul>
-        </div>
-
-        <div class="story-examples">
-            <div class="story-example">
-                <h4>💜 Stories of Survival</h4>
-                <p>"Sharing my journey helped me reclaim my voice and showed me I wasn't alone in my experience."</p>
-                <small>- Anonymous Survivor</small>
-            </div>
-            <div class="story-example">
-                <h4>🕊️ Messages of Hope</h4>
-                <p>"Reading others' stories gave me the courage to seek help. Now I want to pay it forward."</p>
-                <small>- Community Member</small>
-            </div>
-            <div class="story-example">
-                <h4>🌟 Words of Wisdom</h4>
-                <p>"Healing isn't linear, but every shared story creates ripples of change in our community."</p>
-                <small>- Support Advocate</small>
-            </div>
-        </div>
-
-        <div style="margin-top: 30px; padding: 20px; background: #f0f8f0; border-radius: 10px;">
-            <h3>Need Immediate Support?</h3>
-            <p>If you're in crisis or need immediate help, please contact:</p>
-            <p><strong>GBV Command Centre: 0800 428 428</strong> • <strong>Lifeline: 0861 322 322</strong></p>
-            <p><em>Your safety and wellbeing are the most important.</em></p>
-        </div>
-    </div>
-
-    <script>
-        // Enhanced Security & Privacy
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.pathname);
-        }
-        
-        // Enhanced Emergency Exit
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create emergency exit button
-            const emergencyExit = document.createElement('div');
-            emergencyExit.className = 'emergency-exit';
-            emergencyExit.innerHTML = `
-                <button onclick="emergencyRedirect()" 
-                        title="Quickly leaves this site and clears data"
-                        class="emergency-exit-btn">
-                    🚨 Quick Exit
-                </button>
-            `;
-            document.body.appendChild(emergencyExit);
-
-            // Enhanced emergency redirect
-            window.emergencyRedirect = function() {
-                // Clear sensitive data
-                localStorage.removeItem('safetyPlanProgress');
-                sessionStorage.clear();
-                document.querySelectorAll('input, textarea').forEach(element => {
-                    element.value = '';
-                });
-                // Redirect to safe page
-                window.location.href = 'https://www.google.com/search?q=weather';
-            };
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
-                    emergencyRedirect();
-                }
-            });
-            
-            // Create Language Selector
-            const languageSelector = document.createElement('select');
-            languageSelector.id = 'languageSelector';
-            languageSelector.innerHTML = `
-                <option value="en">English</option>
-                <option value="zu">Zulu</option>
-                <option value="xh">Xhosa</option>
-                <option value="af">Afrikaans</option>
-            `;
-            languageSelector.onchange = (e) => changeLanguage(e.target.value);
-            document.body.appendChild(languageSelector);
-            
-            // Initialize language
-            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-            changeLanguage(savedLanguage);
-            
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackPageView('stories.html');
-                analytics.trackFeatureUse('stories_page_loaded');
-            }
-        });
-        
-        // Language Support
-        const translations = {
-            en: {
-                'home': 'Home',
-                'report': 'Report',
-                'support': 'Support',
-                'stories': 'Stories',
-                'library': 'Resources',
-                'community': 'Community',
-                'events': 'Events',
-                'about': 'About',
-                'safety': 'Safety',
-                'assessment': 'Risk Check',
-                'education': 'Education',
-                'login': 'Admin'
-            },
-            zu: {
-                'home': 'Ikhaya',
-                'report': 'Bika',
-                'support': 'Usizo',
-                'stories': 'Izindaba',
-                'library': 'Izinsiza',
-                'community': 'Umphakathi',
-                'events': 'Imicimbi',
-                'about': 'Mayelana',
-                'safety': 'Ukuphepha',
-                'assessment': 'Ukuhlola',
-                'education': 'Imfundo',
-                'login': 'Admin'
-            },
-            xh: {
-                'home': 'Ekhaya',
-                'report': 'Xela',
-                'support': 'Uncedo',
-                'stories': 'Iimbali',
-                'library': 'Iindlela',
-                'community': 'Uluntu',
-                'events': 'Iivenkile',
-                'about': 'Malunga',
-                'safety': 'Ukhuseleko',
-                'assessment': 'Uvavanyo',
-                'education': 'Imfundo',
-                'login': 'Admin'
-            },
-            af: {
-                'home': 'Tuis',
-                'report': 'Rapporteer',
-                'support': 'Ondersteuning',
-                'stories': 'Stories',
-                'library': 'Hulpbronne',
-                'community': 'Gemeenskap',
-                'events': 'Gebeure',
-                'about': 'Oor',
-                'safety': 'Veiligheid',
-                'assessment': 'Risiko',
-                'education': 'Onderrig',
-                'login': 'Admin'
-            }
-        };
-
-        let currentLanguage = 'en';
-
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            localStorage.setItem('preferredLanguage', lang);
-            applyTranslations();
-            updateLanguageSelector();
-        }
-
-        function applyTranslations() {
-            const elements = document.querySelectorAll('[data-translate]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[currentLanguage] && translations[currentLanguage][key]) {
-                    element.textContent = translations[currentLanguage][key];
-                }
-            });
-        }
-
-        function updateLanguageSelector() {
-            const selector = document.getElementById('languageSelector');
-            if (selector) {
-                selector.value = currentLanguage;
-            }
-        }
-
-        function trackStorySubmission() {
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackFeatureUse('story_submission_clicked');
-            }
-            
-            // Open in new tab after tracking
-            setTimeout(() => {
-                window.open('https://docs.google.com/forms/d/e/1FAIpQLSe7gRYD0fu4JlouNpfpbMwXjIiAEb8SPF3SbhMdrJHbXWedeA/viewform?usp=header', '_blank');
-            }, 100);
-        }
-
-        // Add some interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click tracking to story examples
-            document.querySelectorAll('.story-example').forEach(example => {
-                example.addEventListener('click', function() {
-                    if (typeof analytics !== 'undefined') {
-                        analytics.trackFeatureUse('story_example_viewed');
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
