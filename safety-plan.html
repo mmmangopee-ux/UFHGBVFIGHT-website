@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Safety Planning - GBV Safe Corner</title>
+    <title>Safety Planning Tool - GBV Safe Corner</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#6A0DAD">
+    <meta name="description" content="Create your personalized GBV safety plan. Private, secure, and downloadable. Your safety is our priority at GBV Safe Corner.">
+    <link rel="canonical" href="https://gbvsafecorner.org/safety-plan" />
     
-    <!-- ANALYTICS INTEGRATED -->
-    <script src="analytics.js"></script>
-    <script src="navigation.js"></script>
+    <!-- GBV Safe Corner Resources -->
+    <script src="https://gbvsafecorner.org/analytics.js"></script>
+    <script src="https://gbvsafecorner.org/navigation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <style>
@@ -238,6 +240,30 @@
             color: white;
         }
         
+        /* GBV Safe Corner Specific Styles */
+        .gbv-brand {
+            color: #6A0DAD;
+            font-weight: bold;
+        }
+        
+        .domain-notice {
+            background: #e8f4fd;
+            border-left: 4px solid #6A0DAD;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .gbv-verified-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
         /* Accessibility */
         :focus {
             outline: 3px solid #6A0DAD;
@@ -278,14 +304,21 @@
             <span>SAFE</span>
             <span>CORNER</span>
         </div>
-        <p>Safety Planning Tool</p>
+        <p>gbvsafecorner.org - Safety Planning Tool</p>
+        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+            <small>🔒 Private • Secure • Your Data Stays on Your Device</small>
+        </div>
     </div>
 
-    <!-- Navigation auto-loaded here -->
+    <!-- Navigation auto-loaded from gbvsafecorner.org -->
 
     <div class="content-section">
-        <h2 class="purple-accent">🛡️ Personal Safety Plan</h2>
-        <p>Create a personalized safety plan. Your responses are not saved online - this is for your personal use only. All data stays on your device.</p>
+        <h2 class="purple-accent">🛡️ GBV Safe Corner Personal Safety Plan</h2>
+        
+        <div class="domain-notice">
+            <strong>Privacy First:</strong> Your safety plan is stored only on your device. Nothing is saved on our servers. 
+            <a href="https://gbvsafecorner.org/privacy" target="_blank" style="color: #6A0DAD;">View our privacy policy</a>.
+        </div>
         
         <div class="progress-section">
             <h3>Your Safety Plan Progress</h3>
@@ -297,78 +330,114 @@
 
         <div class="action-buttons no-print">
             <button class="print-btn" onclick="window.print()">🖨️ Print Safety Plan</button>
-            <button class="save-btn" onclick="savePlan()">💾 Save Progress</button>
-            <button class="pdf-btn" onclick="generateSafetyPlanPDF()">📄 Download PDF</button>
-            <button class="clear-btn" onclick="clearPlan()">🗑️ Clear All</button>
+            <button class="save-btn" onclick="gbvSavePlan()">💾 Save to Device</button>
+            <button class="pdf-btn" onclick="gbvGenerateSafetyPlanPDF()">📄 Download PDF</button>
+            <button class="clear-btn" onclick="gbvClearPlan()">🗑️ Clear All</button>
         </div>
 
         <div class="safety-category">
-            <h3 class="purple-accent">🏠 Home Safety</h3>
+            <h3 class="purple-accent">🏠 Home Safety - GBV Safe Corner Recommended</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Identify safe rooms with locks and phone access
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Plan escape routes from each room
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Keep phone charged and accessible at all times
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
-                    Teach children how to call emergency services
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Teach children how to call 10111 emergency services
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Have a code word with trusted neighbors for emergencies
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Keep keys easily accessible near exits
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Install additional locks if needed
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify safe hiding places in home
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customHome" placeholder="➕ Add your own home safety item...">
-                <button class="add-custom-btn" onclick="addCustomItem('home')">Add Item</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('home')">Add Item</button>
             </div>
         </div>
 
         <div class="safety-category">
-            <h3 class="purple-accent">📞 Emergency Contacts & Support</h3>
+            <h3 class="purple-accent">📞 Emergency Contacts & Support Network</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Memorize 2-3 emergency numbers
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Identify safe neighbors who can help
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Save emergency contacts under code names in phone
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Establish check-in times with trusted friends/family
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Share safety plan with at least one trusted person
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Program speed dial for emergency services
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify local shelters and safe places
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customContacts" placeholder="➕ Add emergency contact information...">
-                <button class="add-custom-btn" onclick="addCustomItem('contacts')">Add Contact</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('contacts')">Add Contact</button>
             </div>
         </div>
 
@@ -376,31 +445,49 @@
             <h3 class="purple-accent">💼 Important Documents & Essentials</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Keep IDs, passports, and important documents in safe place
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Have copies of important documents with trusted person
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Save emergency money in hidden location
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Pack emergency bag with essentials (medication, clothes, cash)
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Include children's documents and medications if applicable
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Keep bank cards and important numbers accessible
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Store digital copies of documents in secure cloud
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customDocuments" placeholder="➕ Add important document reminder...">
-                <button class="add-custom-btn" onclick="addCustomItem('documents')">Add Item</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('documents')">Add Item</button>
             </div>
         </div>
 
@@ -408,31 +495,49 @@
             <h3 class="purple-accent">🔄 Daily Safety Routines</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Vary daily routines and travel routes
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Inform trusted people of your whereabouts
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Avoid isolated areas when alone
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Trust your instincts - if something feels wrong, leave
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Park in well-lit areas
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Have keys ready when approaching car or home
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Check surroundings before entering/exiting
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customRoutines" placeholder="➕ Add your daily safety routine...">
-                <button class="add-custom-btn" onclick="addCustomItem('routines')">Add Routine</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('routines')">Add Routine</button>
             </div>
         </div>
 
@@ -440,120 +545,324 @@
             <h3 class="purple-accent">📱 Digital Safety & Privacy</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Use private browsing mode when accessing support resources
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Clear browser history regularly
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Use strong, unique passwords for all accounts
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Be cautious about location sharing on social media
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Review privacy settings on all social media accounts
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Use incognito mode for GBV Safe Corner website
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Consider using a separate email for support services
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customDigital" placeholder="➕ Add digital safety tip...">
-                <button class="add-custom-btn" onclick="addCustomItem('digital')">Add Tip</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('digital')">Add Tip</button>
             </div>
         </div>
 
         <div class="safety-category">
-            <h3 class="purple-accent">🚨 Emergency Protocol</h3>
+            <h3 class="purple-accent">🚨 Emergency Protocol & Crisis Response</h3>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Know the quickest route to nearest police station
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Identify safe places to go in an emergency (friends, family, shelters)
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Practice emergency scenarios with children if applicable
                 </label>
             </div>
             <div class="checklist-item">
                 <label>
-                    <input type="checkbox" onchange="toggleCompleted(this)">
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
                     Keep car fueled and ready for quick departure
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Know how to access emergency services quickly
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Have a signal system with neighbors for help
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify code words for children to use in emergencies
                 </label>
             </div>
             <div class="custom-item">
                 <input type="text" class="custom-input" id="customEmergency" placeholder="➕ Add emergency protocol step...">
-                <button class="add-custom-btn" onclick="addCustomItem('emergency')">Add Step</button>
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('emergency')">Add Step</button>
+            </div>
+        </div>
+
+        <div class="safety-category">
+            <h3 class="purple-accent">💬 Communication Strategies</h3>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Plan what to say if you need to leave quickly
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify safe ways to communicate with support network
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Practice de-escalation techniques if safe to do so
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Know when to stop engaging and prioritize safety
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Have prepared responses for difficult situations
+                </label>
+            </div>
+            <div class="custom-item">
+                <input type="text" class="custom-input" id="customCommunication" placeholder="➕ Add communication strategy...">
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('communication')">Add Strategy</button>
+            </div>
+        </div>
+
+        <div class="safety-category">
+            <h3 class="purple-accent">❤️ Emotional & Mental Health Safety</h3>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify coping strategies for stress and anxiety
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Keep contact information for counselors and support groups
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Practice self-care routines regularly
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify triggers and plan how to avoid or manage them
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Have a list of comforting activities for difficult moments
+                </label>
+            </div>
+            <div class="custom-item">
+                <input type="text" class="custom-input" id="customEmotional" placeholder="➕ Add emotional safety practice...">
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('emotional')">Add Practice</button>
+            </div>
+        </div>
+
+        <div class="safety-category">
+            <h3 class="purple-accent">👶 Child Safety Planning (If Applicable)</h3>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Teach children emergency numbers and their address
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Establish safe words or signals with children
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Plan how to evacuate with children quickly
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Keep children's essential items in emergency bag
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify safe adults children can contact
+                </label>
+            </div>
+            <div class="custom-item">
+                <input type="text" class="custom-input" id="customChildren" placeholder="➕ Add child safety measure...">
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('children')">Add Measure</button>
+            </div>
+        </div>
+
+        <div class="safety-category">
+            <h3 class="purple-accent">⚖️ Legal Protection & Rights</h3>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Know how to obtain a protection order
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Keep legal documents and court orders accessible
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Document incidents with dates and details
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Know your rights regarding police protection
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label>
+                    <input type="checkbox" onchange="gbvToggleCompleted(this)">
+                    Identify legal aid resources in your area
+                </label>
+            </div>
+            <div class="custom-item">
+                <input type="text" class="custom-input" id="customLegal" placeholder="➕ Add legal protection step...">
+                <button class="add-custom-btn" onclick="gbvAddCustomItem('legal')">Add Step</button>
             </div>
         </div>
 
         <div class="progress-section">
-            <h3>Emergency Contacts Quick Reference</h3>
-            <div style="text-align: left; background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
-                <p><strong>GBV Command Centre:</strong> 0800 428 428</p>
+            <h3>GBV Safe Corner Emergency Contacts Quick Reference</h3>
+            <div style="text-align: left; background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border: 2px solid #6A0DAD;">
+                <p><strong>GBV Command Centre:</strong> 0800 428 428 <span class="gbv-verified-badge">VERIFIED</span></p>
                 <p><strong>Police Emergency:</strong> 10111</p>
+                <p><strong>GBV Safe Corner Support:</strong> 087 550 2273 <span class="gbv-verified-badge">GBV SAFE CORNER</span></p>
                 <p><strong>Lifeline Counseling:</strong> 0861 322 322</p>
                 <p><strong>Suicide Crisis Line:</strong> 0800 567 567</p>
                 <p><strong>Childline:</strong> 0800 055 555</p>
-                <p><strong>Your Trusted Contacts:</strong> ___________________</p>
+                <p><strong>Online Support:</strong> gbvsafecorner.org <span class="gbv-verified-badge">24/7</span></p>
+                <p><strong>Your Trusted Contact 1:</strong> ___________________</p>
+                <p><strong>Your Trusted Contact 2:</strong> ___________________</p>
+                <p><strong>Nearest Safe Place:</strong> ___________________</p>
             </div>
+        </div>
+        
+        <div class="domain-notice">
+            <strong>Remember:</strong> Visit <span class="gbv-brand">gbvsafecorner.org</span> for additional resources, 
+            support groups, and professional counseling services. You are not alone. This safety plan is regularly updated 
+            with the latest safety recommendations from GBV experts.
+        </div>
+
+        <div class="action-buttons no-print">
+            <button class="print-btn" onclick="window.print()">🖨️ Print Safety Plan</button>
+            <button class="save-btn" onclick="gbvSavePlan()">💾 Save to Device</button>
+            <button class="pdf-btn" onclick="gbvGenerateSafetyPlanPDF()">📄 Download PDF</button>
+            <button class="clear-btn" onclick="gbvClearPlan()">🗑️ Clear All</button>
         </div>
     </div>
 
     <script>
-        // Enhanced Security & Privacy
+        // GBV Safe Corner Security & Privacy
         if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.pathname);
+            window.history.replaceState(null, null, window.location.href);
         }
         
-        // Enhanced Emergency Exit
         document.addEventListener('DOMContentLoaded', function() {
-            // Create emergency exit button
+            // GBV Safe Corner Emergency Exit
             const emergencyExit = document.createElement('div');
             emergencyExit.className = 'emergency-exit';
             emergencyExit.innerHTML = `
-                <button onclick="emergencyRedirect()" 
-                        title="Quickly leaves this site and clears data"
+                <button onclick="gbvEmergencyRedirect()" 
+                        title="Quickly leaves GBV Safe Corner and clears data"
                         class="emergency-exit-btn">
                     🚨 Quick Exit
                 </button>
             `;
             document.body.appendChild(emergencyExit);
 
-            // Enhanced emergency redirect
-            window.emergencyRedirect = function() {
-                // Clear sensitive data
-                localStorage.removeItem('safetyPlanProgress');
-                localStorage.removeItem('customSafetyItems');
+            // GBV Safe Corner Emergency Redirect
+            window.gbvEmergencyRedirect = function() {
+                // Clear all GBV Safe Corner data
+                localStorage.removeItem('gbvSafetyPlanProgress');
+                localStorage.removeItem('gbvCustomSafetyItems');
                 sessionStorage.clear();
                 document.querySelectorAll('input, textarea').forEach(element => {
                     element.value = '';
                 });
                 // Redirect to safe page
-                window.location.href = 'https://www.google.com/search?q=weather';
+                window.location.href = 'https://www.google.com/search?q=weather+forecast';
             };
 
             // Keyboard shortcuts
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
-                    emergencyRedirect();
+                    gbvEmergencyRedirect();
                 }
             });
             
-            // Create Language Selector
+            // GBV Safe Corner Language Selector
             const languageSelector = document.createElement('select');
             languageSelector.id = 'languageSelector';
             languageSelector.innerHTML = `
@@ -562,25 +871,25 @@
                 <option value="xh">Xhosa</option>
                 <option value="af">Afrikaans</option>
             `;
-            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            languageSelector.onchange = (e) => gbvChangeLanguage(e.target.value);
             document.body.appendChild(languageSelector);
             
             // Initialize language
-            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-            changeLanguage(savedLanguage);
+            const savedLanguage = localStorage.getItem('gbvPreferredLanguage') || 'en';
+            gbvChangeLanguage(savedLanguage);
             
             // Load saved progress
-            loadSavedProgress();
+            gbvLoadSavedProgress();
             
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackPageView('safety-plan.html');
-                analytics.trackFeatureUse('safety_plan_loaded');
+            // GBV Safe Corner Analytics
+            if (typeof gbvAnalytics !== 'undefined') {
+                gbvAnalytics.trackPageView('safety-plan');
+                gbvAnalytics.trackFeatureUse('safety_plan_loaded');
             }
         });
         
-        // Language Support
-        const translations = {
+        // GBV Safe Corner Language Support
+        const gbvTranslations = {
             en: {
                 'home': 'Home',
                 'report': 'Report',
@@ -641,46 +950,46 @@
 
         let currentLanguage = 'en';
 
-        function changeLanguage(lang) {
+        function gbvChangeLanguage(lang) {
             currentLanguage = lang;
-            localStorage.setItem('preferredLanguage', lang);
-            applyTranslations();
-            updateLanguageSelector();
+            localStorage.setItem('gbvPreferredLanguage', lang);
+            gbvApplyTranslations();
+            gbvUpdateLanguageSelector();
         }
 
-        function applyTranslations() {
+        function gbvApplyTranslations() {
             const elements = document.querySelectorAll('[data-translate]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[currentLanguage] && translations[currentLanguage][key]) {
-                    element.textContent = translations[currentLanguage][key];
+                if (gbvTranslations[currentLanguage] && gbvTranslations[currentLanguage][key]) {
+                    element.textContent = gbvTranslations[currentLanguage][key];
                 }
             });
         }
 
-        function updateLanguageSelector() {
+        function gbvUpdateLanguageSelector() {
             const selector = document.getElementById('languageSelector');
             if (selector) {
                 selector.value = currentLanguage;
             }
         }
         
-        function toggleCompleted(checkbox) {
+        // GBV Safe Corner specific functions
+        function gbvToggleCompleted(checkbox) {
             const item = checkbox.closest('.checklist-item');
             if (checkbox.checked) {
                 item.classList.add('completed');
             } else {
                 item.classList.remove('completed');
             }
-            updateProgress();
+            gbvUpdateProgress();
             
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackFeatureUse('checklist_toggle');
+            if (typeof gbvAnalytics !== 'undefined') {
+                gbvAnalytics.trackFeatureUse('safety_checklist_toggle');
             }
         }
 
-        function updateProgress() {
+        function gbvUpdateProgress() {
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             const completed = document.querySelectorAll('input[type="checkbox"]:checked');
             const progress = (completed.length / checkboxes.length) * 100;
@@ -689,7 +998,7 @@
             
             let progressText = '';
             if (progress === 0) {
-                progressText = '0% Complete - Start building your safety plan';
+                progressText = '0% Complete - Start building your GBV safety plan';
             } else if (progress < 25) {
                 progressText = Math.round(progress) + '% Complete - Great start!';
             } else if (progress < 50) {
@@ -699,48 +1008,47 @@
             } else if (progress < 100) {
                 progressText = Math.round(progress) + '% Complete - Excellent work!';
             } else {
-                progressText = '100% Complete - Your safety plan is ready!';
+                progressText = '100% Complete - Your GBV safety plan is ready!';
             }
             
             document.getElementById('progressText').textContent = progressText;
         }
 
-        function savePlan() {
+        function gbvSavePlan() {
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             const progress = {};
             
             checkboxes.forEach((cb, index) => {
-                progress[`item_${index}`] = cb.checked; 
+                progress[`gbv_item_${index}`] = cb.checked; 
             });
             
             // Save custom items
             const customItems = {};
-            const customInputs = ['customHome', 'customContacts', 'customDocuments', 'customRoutines', 'customDigital', 'customEmergency'];
+            const customInputs = ['customHome', 'customContacts', 'customDocuments', 'customRoutines', 'customDigital', 'customEmergency', 'customCommunication', 'customEmotional', 'customChildren', 'customLegal'];
             customInputs.forEach(id => {
                 customItems[id] = document.getElementById(id).value;
             });
             
-            localStorage.setItem('safetyPlanProgress', JSON.stringify(progress));
-            localStorage.setItem('customSafetyItems', JSON.stringify(customItems));
+            localStorage.setItem('gbvSafetyPlanProgress', JSON.stringify(progress));
+            localStorage.setItem('gbvCustomSafetyItems', JSON.stringify(customItems));
             
-            alert('Safety plan progress saved locally on your device.');
+            alert('GBV Safety Plan progress saved locally on your device.');
             
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackFeatureUse('safety_plan_save');
+            if (typeof gbvAnalytics !== 'undefined') {
+                gbvAnalytics.trackFeatureUse('safety_plan_saved');
             }
         }
 
-        function loadSavedProgress() {
-            const saved = localStorage.getItem('safetyPlanProgress');
-            const customSaved = localStorage.getItem('customSafetyItems');
+        function gbvLoadSavedProgress() {
+            const saved = localStorage.getItem('gbvSafetyPlanProgress');
+            const customSaved = localStorage.getItem('gbvCustomSafetyItems');
             
             if (saved) {
                 const progress = JSON.parse(saved);
                 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 
                 checkboxes.forEach((cb, index) => {
-                    if (progress[`item_${index}`]) {
+                    if (progress[`gbv_item_${index}`]) {
                         cb.checked = true;
                         cb.closest('.checklist-item').classList.add('completed');
                     }
@@ -757,37 +1065,36 @@
                 });
             }
             
-            updateProgress();
+            gbvUpdateProgress();
         }
 
-        function clearPlan() {
-            if (confirm('Are you sure you want to clear your entire safety plan? This cannot be undone.')) {
+        function gbvClearPlan() {
+            if (confirm('Are you sure you want to clear your entire GBV Safety Plan? This cannot be undone.')) {
                 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 checkboxes.forEach(cb => {
                     cb.checked = false;
                     cb.closest('.checklist-item').classList.remove('completed');
                 });
                 
-                const customInputs = ['customHome', 'customContacts', 'customDocuments', 'customRoutines', 'customDigital', 'customEmergency'];
+                const customInputs = ['customHome', 'customContacts', 'customDocuments', 'customRoutines', 'customDigital', 'customEmergency', 'customCommunication', 'customEmotional', 'customChildren', 'customLegal'];
                 customInputs.forEach(id => {
                     document.getElementById(id).value = '';
                 });
                 
-                localStorage.removeItem('safetyPlanProgress');
-                localStorage.removeItem('customSafetyItems');
+                localStorage.removeItem('gbvSafetyPlanProgress');
+                localStorage.removeItem('gbvCustomSafetyItems');
                 
-                updateProgress();
+                gbvUpdateProgress();
                 
-                // ANALYTICS TRACKING - INTEGRATED
-                if (typeof analytics !== 'undefined') {
-                    analytics.trackFeatureUse('safety_plan_cleared');
+                if (typeof gbvAnalytics !== 'undefined') {
+                    gbvAnalytics.trackFeatureUse('safety_plan_cleared');
                 }
                 
-                alert('Safety plan cleared successfully.');
+                alert('GBV Safety Plan cleared successfully.');
             }
         }
 
-        function addCustomItem(category) {
+        function gbvAddCustomItem(category) {
             const inputId = 'custom' + category.charAt(0).toUpperCase() + category.slice(1);
             const input = document.getElementById(inputId);
             const text = input.value.trim();
@@ -798,7 +1105,7 @@
                 newItem.className = 'checklist-item';
                 newItem.innerHTML = `
                     <label>
-                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <input type="checkbox" onchange="gbvToggleCompleted(this)">
                         ${text}
                     </label>
                 `;
@@ -806,34 +1113,38 @@
                 categoryElement.insertBefore(newItem, input.parentElement);
                 input.value = '';
                 
-                // ANALYTICS TRACKING - INTEGRATED
-                if (typeof analytics !== 'undefined') {
-                    analytics.trackFeatureUse('custom_item_added');
+                if (typeof gbvAnalytics !== 'undefined') {
+                    gbvAnalytics.trackFeatureUse('custom_safety_item_added');
                 }
             }
         }
         
-        // Enhanced PDF Generator
-        function generateSafetyPlanPDF() {
+        // Enhanced GBV Safe Corner PDF Generator
+        function gbvGenerateSafetyPlanPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Title
+            // GBV Safe Corner Header
             doc.setFontSize(20);
             doc.setTextColor(106, 13, 173);
-            doc.text('Personal Safety Plan - GBV Safe Corner', 20, 20);
+            doc.text('GBV Safe Corner - Personal Safety Plan', 20, 20);
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Generated from gbvsafecorner.org', 20, 28);
+            doc.text('Private and Confidential - Keep Secure', 20, 35);
             
             // Emergency Contacts
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
-            doc.text('Emergency Contacts:', 20, 35);
-            doc.text('GBV Command Centre: 0800 428 428', 25, 45);
-            doc.text('Police Emergency: 10111', 25, 55);
-            doc.text('Lifeline Counseling: 0861 322 322', 25, 65);
-            doc.text('Suicide Crisis Line: 0800 567 567', 25, 75);
+            doc.text('Emergency Contacts:', 20, 50);
+            doc.text('GBV Command Centre: 0800 428 428', 25, 60);
+            doc.text('Police Emergency: 10111', 25, 70);
+            doc.text('GBV Safe Corner: 087 550 2273', 25, 80);
+            doc.text('Lifeline Counseling: 0861 322 322', 25, 90);
+            doc.text('Online: gbvsafecorner.org', 25, 100);
             
-            // Content from checklists
-            let yPosition = 95;
+            // Safety Plan Content
+            let yPosition = 120;
             const categories = document.querySelectorAll('.safety-category');
             
             categories.forEach(category => {
@@ -866,25 +1177,33 @@
                         yPosition = 20;
                     }
                     
-                    doc.text(`• ${text} - ${status}`, 25, yPosition);
-                    yPosition += 8;
+                    // Wrap long text
+                    const lines = doc.splitTextToSize(`• ${text} - ${status}`, 160);
+                    lines.forEach(line => {
+                        if (yPosition > 270) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                        doc.text(line, 25, yPosition);
+                        yPosition += 6;
+                    });
+                    yPosition += 2;
                 });
                 
                 yPosition += 10;
             });
             
-            // Footer
+            // GBV Safe Corner Footer
             doc.setFontSize(8);
             doc.setTextColor(100, 100, 100);
-            doc.text('Generated by GBV Safe Corner - ' + new Date().toLocaleDateString(), 20, 280);
-            doc.text('Keep this plan in a safe, accessible location', 20, 285);
+            doc.text('Generated by GBV Safe Corner (gbvsafecorner.org) - ' + new Date().toLocaleDateString(), 20, 280);
+            doc.text('Keep this plan in a safe, accessible location. Visit gbvsafecorner.org for support.', 20, 285);
             
             // Save the PDF
-            doc.save('gbv-safety-plan.pdf');
+            doc.save('gbv-safe-corner-safety-plan.pdf');
             
-            // ANALYTICS TRACKING - INTEGRATED
-            if (typeof analytics !== 'undefined') {
-                analytics.trackFeatureUse('pdf_download');
+            if (typeof gbvAnalytics !== 'undefined') {
+                gbvAnalytics.trackFeatureUse('safety_plan_pdf_download');
             }
         }
     </script>
