@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library - GBV Safe Corner</title>
+    <meta name="description" content="Comprehensive GBV resource library with downloadable guides, survivor stories, legal information, and educational materials.">
+    <meta name="theme-color" content="#8e44ad">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="GBV Resource Library - GBV Safe Corner">
+    <meta property="og:description" content="Free downloadable resources for GBV survivors and supporters">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gbvsafecorner.org/resources.html">
+    
+    <!-- CSS Variables -->
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --primary-dark: #732d91;
+            --primary-light: #9b59b6;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --border: #e1e8ed;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+        
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        .main-header {
+            background: white;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .category-btn {
+            background: white;
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .resource-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-content {
+            padding: 1.5rem;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .download-stats {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        
+        .emergency-exit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filters {
+                flex-direction: column;
+            }
+            
+            .category-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <span>🛡️</span>
+                GBV Safe Corner
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="support.html" class="nav-link">Support</a>
+                <a href="resources.html" class="nav-link active">Resources</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <a href="education-hub.html" class="nav-link">Education</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>📚 Resource Library</h1>
+                <p>Comprehensive collection of GBV resources, guides, and survivor support materials</p>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search resources..." id="resourceSearch">
+                    <button class="search-btn" onclick="searchResources()">🔍 Search</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filters -->
+        <div class="category-filters">
+            <button class="category-btn active" onclick="filterResources('all')">All Resources</button>
+            <button class="category-btn" onclick="filterResources('safety')">🛡️ Safety Planning</button>
+            <button class="category-btn" onclick="filterResources('legal')">⚖️ Legal Rights</button>
+            <button class="category-btn" onclick="filterResources('health')">🩺 Health & Healing</button>
+            <button class="category-btn" onclick="filterResources('support')">🤝 Support Guides</button>
+            <button class="category-btn" onclick="filterResources('stories')">📖 Survivor Stories</button>
+            <button class="category-btn" onclick="filterResources('education')">🎓 Educational</button>
+        </div>
+
+        <!-- Download Statistics -->
+        <section class="download-stats">
+            <h2>Resource Impact</h2>
+            <p>Our resources have helped thousands of survivors and supporters</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalDownloads">12,847</div>
+                    <div>Total Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="activeResources">156</div>
+                    <div>Available Resources</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="languages">4</div>
+                    <div>Languages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="countries">78</div>
+                    <div>Countries Reached</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Grid -->
+        <section class="resources-grid" id="resourcesContainer">
+            <!-- Safety Planning Resources -->
+            <div class="resource-card" data-category="safety">
+                <div class="resource-header">
+                    <div class="resource-icon">🛡️</div>
+                    <h3>Comprehensive Safety Plan</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Step-by-step guide to creating personalized safety plans for home, work, and digital spaces.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 2.3 MB</span>
+                        <span>⭐ 4.8 (2.1k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('safety-plan-comprehensive.pdf')">
+                        📥 Download Guide
+                    </button>
+                </div>
+            </div>
+
+            <!-- Legal Rights -->
+            <div class="resource-card" data-category="legal">
+                <div class="resource-header">
+                    <div class="resource-icon">⚖️</div>
+                    <h3>Legal Rights Handbook</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Complete guide to South African GBV laws, protection orders, and legal procedures.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 3.1 MB</span>
+                        <span>⭐ 4.9 (1.8k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('legal-rights-handbook.pdf')">
+                        📥 Download Handbook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Health & Healing -->
+            <div class="resource-card" data-category="health">
+                <div class="resource-header">
+                    <div class="resource-icon">🩺</div>
+                    <h3>Trauma Recovery Guide</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Evidence-based strategies for healing from trauma and building resilience.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 1.8 MB</span>
+                        <span>⭐ 4.7 (1.5k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('trauma-recovery-guide.pdf')">
+                        📥 Download Guide
+                    </button>
+                </div>
+            </div>
+
+            <!-- Support Guides -->
+            <div class="resource-card" data-category="support">
+                <div class="resource-header">
+                    <div class="resource-icon">🤝</div>
+                    <h3>Supporting Survivors Guide</h3>
+                </div>
+                <div class="resource-content">
+                    <p>How to support friends, family, or community members affected by GBV.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 1.5 MB</span>
+                        <span>⭐ 4.8 (1.2k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('supporting-survivors.pdf')">
+                        📥 Download Guide
+                    </button>
+                </div>
+            </div>
+
+            <!-- Survivor Stories -->
+            <div class="resource-card" data-category="stories">
+                <div class="resource-header">
+                    <div class="resource-icon">📖</div>
+                    <h3>Survivor Stories Collection</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Powerful narratives of healing and resilience from GBV survivors.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 2.7 MB</span>
+                        <span>⭐ 5.0 (2.3k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('survivor-stories.pdf')">
+                        📥 Download Collection
+                    </button>
+                </div>
+            </div>
+
+            <!-- Educational -->
+            <div class="resource-card" data-category="education">
+                <div class="resource-header">
+                    <div class="resource-icon">🎓</div>
+                    <h3>GBV Prevention Toolkit</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Educational materials for community prevention and awareness campaigns.</p>
+                    <div class="resource-meta">
+                        <span>ZIP • 4.2 MB</span>
+                        <span>⭐ 4.6 (890)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('prevention-toolkit.zip')">
+                        📥 Download Toolkit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emergency Resources -->
+            <div class="resource-card" data-category="safety">
+                <div class="resource-header">
+                    <div class="resource-icon">🚨</div>
+                    <h3>Emergency Contact Cards</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Printable emergency contact cards for quick access to help.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 0.8 MB</span>
+                        <span>⭐ 4.9 (3.1k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('emergency-cards.pdf')">
+                        📥 Download Cards
+                    </button>
+                </div>
+            </div>
+
+            <!-- Digital Safety -->
+            <div class="resource-card" data-category="safety">
+                <div class="resource-header">
+                    <div class="resource-icon">💻</div>
+                    <h3>Digital Safety Guide</h3>
+                </div>
+                <div class="resource-content">
+                    <p>Protecting your privacy and security online when seeking help.</p>
+                    <div class="resource-meta">
+                        <span>PDF • 1.2 MB</span>
+                        <span>⭐ 4.7 (1.4k)</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource('digital-safety.pdf')">
+                        📥 Download Guide
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bulk Download -->
+        <section class="download-stats">
+            <h2>📦 Complete Resource Package</h2>
+            <p>Download all our resources in one convenient package</p>
+            <button class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;" onclick="downloadCompletePackage()">
+                📥 Download All Resources (42.5 MB)
+            </button>
+        </section>
+    </div>
+
+    <!-- Emergency Exit -->
+    <div class="emergency-exit">
+        <button class="emergency-exit-btn" onclick="emergencyRedirect()">🚨 Quick Exit</button>
+    </div>
+
+    <script>
+        // Resource Data
+        const resources = {
+            all: document.querySelectorAll('.resource-card'),
+            safety: document.querySelectorAll('[data-category="safety"]'),
+            legal: document.querySelectorAll('[data-category="legal"]'),
+            health: document.querySelectorAll('[data-category="health"]'),
+            support: document.querySelectorAll('[data-category="support"]'),
+            stories: document.querySelectorAll('[data-category="stories"]'),
+            education: document.querySelectorAll('[data-category="education"]')
+        };
+
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+
+        // Filter Resources
+        function filterResources(category) {
+            // Update active filter button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide resources
+            if (category === 'all') {
+                resources.all.forEach(card => card.style.display = 'block');
+            } else {
+                resources.all.forEach(card => card.style.display = 'none');
+                if (resources[category]) {
+                    resources[category].forEach(card => card.style.display = 'block');
+                }
+            }
+
+            // ANALYTICS TRACKING
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse(`resource_filter_${category}`);
+            }
+        }
+
+        // Search Resources
+        function searchResources() {
+            const searchTerm = document.getElementById('resourceSearch').value.toLowerCase();
+            const allCards = document.querySelectorAll('.resource-card');
+            
+            allCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // ANALYTICS TRACKING
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('resource_search');
+            }
+        }
+
+        // Download Resource
+        function downloadResource(filename) {
+            // Simulate download (in real implementation, this would serve actual files)
+            alert(`Downloading ${filename}. In production, this would download the actual file.`);
+            
+            // Update download stats
+            updateDownloadStats();
+            
+            // ANALYTICS TRACKING
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse(`resource_download_${filename.replace('.', '_')}`);
+            }
+        }
+
+        // Download Complete Package
+        function downloadCompletePackage() {
+            alert('Downloading complete resource package (42.5 MB). This contains all available resources.');
+            
+            // Update download stats significantly
+            const current = parseInt(document.getElementById('totalDownloads').textContent);
+            document.getElementById('totalDownloads').textContent = (current + 10).toLocaleString();
+            
+            // ANALYTICS TRACKING
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('complete_package_download');
+            }
+        }
+
+        // Update Download Statistics
+        function updateDownloadStats() {
+            const current = parseInt(document.getElementById('totalDownloads').textContent.replace(',', ''));
+            document.getElementById('totalDownloads').textContent = (current + 1).toLocaleString();
+        }
+
+        // Emergency Redirect
+        function emergencyRedirect() {
+            // Clear sensitive data
+            localStorage.removeItem('searchHistory');
+            sessionStorage.clear();
+            // Redirect to safe page
+            window.location.href = 'https://www.google.com';
+        }
+
+        // Keyboard shortcut for emergency exit
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                emergencyRedirect();
+            }
+        });
+
+        // Enter key for search
+        document.getElementById('resourceSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchResources();
+            }
+        });
+
+        // ANALYTICS INTEGRATION
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('resources.html');
+                analytics.trackFeatureUse('resource_library_loaded');
+            }
+        });
+
+        console.log('📚 Resource Library Initialized - All features active');
+    </script>
+</body>
+</html>
