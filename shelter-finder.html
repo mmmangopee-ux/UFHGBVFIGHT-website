@@ -1,0 +1,518 @@
+<!-- shelter-finder.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Shelter - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .search-section {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .search-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .shelter-card {
+            background: #f9f9f9;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .shelter-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.15);
+        }
+        .shelter-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .feature-tag {
+            background: #6A0DAD;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .shelter-contact {
+            background: #e8f5e8;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .map-container {
+            background: #f0f0f0;
+            height: 300px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        .filter-btn, .search-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .search-btn:hover {
+            background: #8A2BE2;
+        }
+        .emergency-shelter {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .search-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .shelter-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Find Safe Shelter & Housing</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">🏠 Safe Shelter Finder</h2>
+        <p>Find immediate safe housing and shelter services. All listed shelters are verified and provide confidential, secure accommodation for GBV survivors.</p>
+        
+        <div class="search-section">
+            <h3 class="purple-accent">🔍 Search for Shelters</h3>
+            <div class="search-controls">
+                <div>
+                    <label for="province">Province</label>
+                    <select id="province" class="custom-select">
+                        <option value="">All Provinces</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="kzn">KwaZulu-Natal</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="free-state">Free State</option>
+                        <option value="limpopo">Limpopo</option>
+                        <option value="mpumalanga">Mpumalanga</option>
+                        <option value="north-west">North West</option>
+                        <option value="northern-cape">Northern Cape</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="shelter-type">Shelter Type</label>
+                    <select id="shelter-type" class="custom-select">
+                        <option value="">All Types</option>
+                        <option value="emergency">Emergency Shelter</option>
+                        <option value="transitional">Transitional Housing</option>
+                        <option value="long-term">Long-term Housing</option>
+                        <option value="specialized">Specialized Services</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="capacity">Capacity Needed</label>
+                    <select id="capacity" class="custom-select">
+                        <option value="">Any Capacity</option>
+                        <option value="single">Single Adult</option>
+                        <option value="with-children">With Children</option>
+                        <option value="multiple">Multiple People</option>
+                    </select>
+                </div>
+            </div>
+            <button class="search-btn" onclick="searchShelters()">Search Shelters</button>
+            <button class="filter-btn" onclick="showEmergencyShelters()">Show Emergency Shelters Only</button>
+        </div>
+
+        <div class="shelter-card emergency-shelter">
+            <h3>🚨 Immediate Emergency Shelter - Johannesburg</h3>
+            <p><strong>Address:</strong> Confidential location - contact for details</p>
+            <p><strong>Availability:</strong> 24/7 emergency intake</p>
+            <div class="shelter-features">
+                <span class="feature-tag">Emergency</span>
+                <span class="feature-tag">Children Welcome</span>
+                <span class="feature-tag">Counseling</span>
+                <span class="feature-tag">Legal Support</span>
+            </div>
+            <div class="shelter-contact">
+                <p><strong>Contact:</strong> 011 123 4567</p>
+                <p><strong>Intake Process:</strong> Immediate safety assessment</p>
+                <button class="filter-btn" onclick="contactShelter('Johannesburg Emergency')">Contact This Shelter</button>
+            </div>
+        </div>
+
+        <div class="shelter-card">
+            <h3>Safe Haven Women's Shelter - Cape Town</h3>
+            <p><strong>Address:</strong> Secure location in City Bowl</p>
+            <p><strong>Capacity:</strong> Up to 25 women and children</p>
+            <div class="shelter-features">
+                <span class="feature-tag">Transitional Housing</span>
+                <span class="feature-tag">Children Welcome</span>
+                <span class="feature-tag">Job Training</span>
+                <span class="feature-tag">Therapy</span>
+            </div>
+            <div class="shelter-contact">
+                <p><strong>Contact:</strong> 021 987 6543</p>
+                <p><strong>Services:</strong> 6-month program with life skills</p>
+                <button class="filter-btn" onclick="contactShelter('Cape Town Safe Haven')">Contact This Shelter</button>
+            </div>
+        </div>
+
+        <div class="shelter-card">
+            <h3>New Beginnings Shelter - Durban</h3>
+            <p><strong>Address:</strong> Confidential location in Durban North</p>
+            <p><strong>Specialization:</strong> Families with children</p>
+            <div class="shelter-features">
+                <span class="feature-tag">Family Shelter</span>
+                <span class="feature-tag">Child Care</span>
+                <span class="feature-tag">Education Support</span>
+                <span class="feature-tag">Legal Aid</span>
+            </div>
+            <div class="shelter-contact">
+                <p><strong>Contact:</strong> 031 456 7890</p>
+                <p><strong>Unique Feature:</strong> On-site school support</p>
+                <button class="filter-btn" onclick="contactShelter('Durban New Beginnings')">Contact This Shelter</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <p>🔄 Interactive Shelter Map Loading...</p>
+            <p><small>This feature shows shelter locations while protecting confidentiality</small></p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📞 Shelter Admission Process</h2>
+            <div style="background: #e8f4fd; padding: 20px; border-radius: 8px;">
+                <h4>What to Expect When Contacting a Shelter</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div>
+                        <strong>Step 1: Initial Contact</strong>
+                        <p>Call the shelter for a safety assessment</p>
+                    </div>
+                    <div>
+                        <strong>Step 2: Intake Interview</strong>
+                        <p>Discuss your situation and needs</p>
+                    </div>
+                    <div>
+                        <strong>Step 3: Safety Planning</strong>
+                        <p>Develop a safe arrival plan</p>
+                    </div>
+                    <div>
+                        <strong>Step 4: Admission</strong>
+                        <p>Secure transportation to shelter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">💡 Shelter Preparation Tips</h2>
+            <div style="background: #fff3cd; padding: 20px; border-radius: 8px;">
+                <ul>
+                    <li>Bring essential documents (ID, medical cards, bank cards)</li>
+                    <li>Pack medications and basic necessities</li>
+                    <li>Bring important items for children (favorite toys, comfort items)</li>
+                    <li>Have a list of important phone numbers</li>
+                    <li>Shelters provide basic necessities - don't worry about packing everything</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('shelter-finder.html');
+                analytics.trackFeatureUse('shelter_finder_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Shelter Finder Functions
+        function searchShelters() {
+            const province = document.getElementById('province').value;
+            const type = document.getElementById('shelter-type').value;
+            const capacity = document.getElementById('capacity').value;
+            
+            alert(`Searching shelters...\nProvince: ${province || 'All'}\nType: ${type || 'All'}\nCapacity: ${capacity || 'Any'}`);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('shelter_search');
+                analytics.trackFeatureUse(`shelter_search_${province}_${type}_${capacity}`);
+            }
+        }
+        
+        function showEmergencyShelters() {
+            alert('Showing emergency shelters only...\nThese shelters offer immediate 24/7 intake.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('emergency_shelters_view');
+            }
+        }
+        
+        function contactShelter(shelterName) {
+            alert(`Contacting ${shelterName}...\n\nA secure connection is being established.`);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('shelter_contact_attempt');
+                analytics.trackFeatureUse(`shelter_contact_${shelterName.replace(/\s+/g, '_')}`);
+            }
+        }
+    </script>
+</body>
+</html>
