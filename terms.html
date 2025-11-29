@@ -1,0 +1,590 @@
+<!-- terms.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terms of Service - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .terms-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+        }
+        .terms-point {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .warning-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .important-notice {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        .back-to-top {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-to-top-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-to-top-btn:hover {
+            background: #8A2BE2;
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .toc ul {
+            columns: 2;
+            margin: 10px 0;
+        }
+        .toc li {
+            margin: 5px 0;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .toc ul {
+                columns: 1;
+            }
+            
+            .terms-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Terms of Service</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">📄 Terms of Service</h2>
+        <p><strong>Last Updated:</strong> January 15, 2024</p>
+        
+        <div class="important-notice">
+            <h3 class="purple-accent">🚨 Important Safety Notice</h3>
+            <p>If you are in immediate danger, please call emergency services at <strong>10111</strong> or the GBV Command Centre at <strong>0800 428 428</strong> before using this website.</p>
+        </div>
+
+        <div class="toc">
+            <h3 class="purple-accent">📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#acceptance">Acceptance of Terms</a></li>
+                <li><a href="#services">Services Provided</a></li>
+                <li><a href="#user-responsibilities">User Responsibilities</a></li>
+                <li><a href="#privacy">Privacy & Confidentiality</a></li>
+                <li><a href="#limitations">Service Limitations</a></li>
+                <li><a href="#intellectual-property">Intellectual Property</a></li>
+                <li><a href="#liability">Liability Disclaimer</a></li>
+                <li><a href="#termination">Termination</a></li>
+                <li><a href="#governing-law">Governing Law</a></li>
+                <li><a href="#changes">Changes to Terms</a></li>
+                <li><a href="#contact">Contact Information</a></li>
+            </ul>
+        </div>
+
+        <div class="terms-section" id="acceptance">
+            <h3 class="purple-accent">✅ Acceptance of Terms</h3>
+            
+            <div class="terms-point">
+                <p>By accessing and using GBV Safe Corner ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our services.</p>
+            </div>
+
+            <div class="terms-point">
+                <h4>Eligibility</h4>
+                <p>You must be at least 18 years old to use our services, or have parental/guardian consent if under 18. Our services are available to anyone seeking information or support related to gender-based violence.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="services">
+            <h3 class="purple-accent">🛡️ Services Provided</h3>
+            
+            <div class="terms-point">
+                <h4>Nature of Services</h4>
+                <p>GBV Safe Corner provides:</p>
+                <ul>
+                    <li>Anonymous reporting platform for GBV incidents</li>
+                    <li>Risk assessment tools and safety planning resources</li>
+                    <li>Information about support services and legal rights</li>
+                    <li>Educational resources and community support</li>
+                    <li>Emergency contact information and referral services</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Service Limitations</h4>
+                <p>Our services are informational and supportive in nature. We are not emergency responders, legal representatives, or medical professionals. For immediate emergencies, always contact local emergency services first.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="user-responsibilities">
+            <h3 class="purple-accent">👤 User Responsibilities</h3>
+            
+            <div class="terms-point">
+                <h4>Appropriate Use</h4>
+                <p>You agree to use our services only for lawful purposes and in ways that do not:</p>
+                <ul>
+                    <li>Infringe upon the rights of others</li>
+                    <li>Harass, abuse, or harm other users</li>
+                    <li>Impersonate any person or entity</li>
+                    <li>Interfere with the operation of the Service</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                </ul>
+            </div>
+
+            <div class="terms-point">
+                <h4>Accuracy of Information</h4>
+                <p>When providing information through our services, you agree to provide accurate information to the best of your knowledge. However, anonymous reporting does not require personal identification.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="privacy">
+            <h3 class="purple-accent">🔒 Privacy & Confidentiality</h3>
+            
+            <div class="terms-point">
+                <h4>Anonymous Services</h4>
+                <p>Our anonymous reporting system is designed to protect your privacy:</p>
+                <ul>
+                    <li>No personal identifying information is collected</li>
+                    <li>IP addresses are not stored or logged</li>
+                    <li>Reports cannot be traced back to individuals</li>
+                    <li>Data is encrypted and securely handled</li>
+                </ul>
+            </div>
+
+            <div class="terms-point">
+                <h4>Data Protection</h4>
+                <p>We comply with South African data protection laws and international privacy standards. Please refer to our separate Privacy Policy for detailed information about data handling.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Digital Safety</h4>
+                <p>While we take extensive measures to protect your privacy, we recommend using private browsing mode and clearing your browser history after sensitive sessions for additional safety.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="limitations">
+            <h3 class="purple-accent">⚡ Service Limitations</h3>
+            
+            <div class="terms-point">
+                <h4>Not Emergency Services</h4>
+                <p>GBV Safe Corner is not a substitute for emergency services. In life-threatening situations or immediate danger:</p>
+                <ul>
+                    <li>Call Police Emergency: <strong>10111</strong></li>
+                    <li>Call GBV Command Centre: <strong>0800 428 428</strong></li>
+                    <li>Call Ambulance: <strong>10177</strong></li>
+                </ul>
+            </div>
+
+            <div class="terms-point">
+                <h4>Technical Availability</h4>
+                <p>We strive to maintain 24/7 service availability but cannot guarantee uninterrupted access due to:</p>
+                <ul>
+                    <li>Technical maintenance requirements</li>
+                    <li>Internet connectivity issues</li>
+                    <li>Unforeseen technical problems</li>
+                    <li>Security updates and improvements</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="terms-section" id="intellectual-property">
+            <h3 class="purple-accent">💡 Intellectual Property</h3>
+            
+            <div class="terms-point">
+                <h4>Content Ownership</h4>
+                <p>All content on GBV Safe Corner, including text, graphics, logos, and software, is the property of GBV Safe Corner or our content providers and is protected by copyright and intellectual property laws.</p>
+            </div>
+
+            <div class="terms-point">
+                <h4>Limited License</h4>
+                <p>We grant you a limited, non-exclusive, non-transferable license to access and use our services for personal, non-commercial purposes related to GBV support and education.</p>
+            </div>
+
+            <div class="terms-point">
+                <h4>Resource Sharing</h4>
+                <p>You may share our educational resources and safety information for non-commercial purposes, provided you maintain attribution to GBV Safe Corner.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="liability">
+            <h3 class="purple-accent">⚖️ Liability Disclaimer</h3>
+            
+            <div class="important-notice">
+                <h4>🚨 Important Disclaimer</h4>
+                <p>GBV Safe Corner provides information and resources "as is" without warranties of any kind. We are not liable for any decisions made or actions taken based on information provided through our services.</p>
+            </div>
+
+            <div class="terms-point">
+                <h4>No Professional Advice</h4>
+                <p>The information provided on our platform is for educational and supportive purposes only and does not constitute:</p>
+                <ul>
+                    <li>Legal advice</li>
+                    <li>Medical advice</li>
+                    <li>Psychological counseling</li>
+                    <li>Professional crisis intervention</li>
+                </ul>
+            </div>
+
+            <div class="terms-point">
+                <h4>Limitation of Liability</h4>
+                <p>To the fullest extent permitted by law, GBV Safe Corner shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="termination">
+            <h3 class="purple-accent">🚪 Termination</h3>
+            
+            <div class="terms-point">
+                <h4>Service Access</h4>
+                <p>We reserve the right to terminate or suspend access to our services immediately, without prior notice, for conduct that we believe:</p>
+                <ul>
+                    <li>Violates these Terms of Service</li>
+                    <li>Creates risk or possible legal exposure</li>
+                    <li>Threatens the safety of our users</li>
+                    <li>Damages the integrity of our services</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="terms-section" id="governing-law">
+            <h3 class="purple-accent">⚖️ Governing Law</h3>
+            
+            <div class="terms-point">
+                <h4>Jurisdiction</h4>
+                <p>These Terms of Service shall be governed by and construed in accordance with the laws of South Africa. Any disputes relating to these terms will be subject to the exclusive jurisdiction of the courts of South Africa.</p>
+            </div>
+
+            <div class="terms-point">
+                <h4>Compliance with Laws</h4>
+                <p>You agree to comply with all applicable laws, regulations, and rules regarding your use of our services, including South African laws governing online conduct and acceptable content.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="changes">
+            <h3 class="purple-accent">🔄 Changes to Terms</h3>
+            
+            <div class="terms-point">
+                <h4>Updates</h4>
+                <p>We reserve the right to modify these Terms of Service at any time. We will notify users of significant changes by:</p>
+                <ul>
+                    <li>Posting the updated terms on our website</li>
+                    <li>Updating the "Last Updated" date</li>
+                    <li>Providing notice through our services when appropriate</li>
+                </ul>
+            </div>
+
+            <div class="terms-point">
+                <h4>Continued Use</h4>
+                <p>Your continued use of our services after changes to these terms constitutes acceptance of the updated Terms of Service.</p>
+            </div>
+        </div>
+
+        <div class="terms-section" id="contact">
+            <h3 class="purple-accent">📞 Contact Information</h3>
+            
+            <div class="terms-point">
+                <p>If you have any questions about these Terms of Service, please contact us:</p>
+                
+                <div style="margin-top: 15px;">
+                    <p><strong>Email:</strong> legal@gbvsafecorner.org</p>
+                    <p><strong>General Inquiries:</strong> info@gbvsafecorner.org</p>
+                    <p><strong>GBV Support:</strong> 0800 428 428</p>
+                    <p><strong>Address:</strong> [Registered Office Address]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-to-top">
+            <button class="back-to-top-btn" onclick="scrollToTop()">Back to Top</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('terms.html');
+                analytics.trackFeatureUse('terms_page_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
