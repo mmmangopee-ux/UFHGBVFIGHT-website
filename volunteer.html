@@ -1,0 +1,685 @@
+<!-- volunteer.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Volunteer - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .volunteer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .volunteer-card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .volunteer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 13, 173, 0.15);
+        }
+        .volunteer-role {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .role-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .role-tag {
+            background: #6A0DAD;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .apply-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        .apply-btn:hover {
+            background: #8A2BE2;
+        }
+        .training-section {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .form-group { 
+            margin: 15px 0; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            color: #6A0DAD;
+        }
+        textarea, select, input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            font-family: Arial; 
+            box-sizing: border-box;
+        }
+        .submit-btn { 
+            background: #6A0DAD; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background: #8A2BE2;
+            transform: translateY(-2px);
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            display: none;
+        }
+        .volunteer-benefits {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .volunteer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .volunteer-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Volunteer Opportunities</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">🤝 Join Our Volunteer Team</h2>
+        <p>Make a difference in the lives of GBV survivors. We offer various volunteer opportunities with comprehensive training and support.</p>
+        
+        <div class="volunteer-benefits">
+            <h3 class="purple-accent">🌟 Volunteer Benefits</h3>
+            <ul>
+                <li>Comprehensive training and ongoing support</li>
+                <li>Flexible scheduling options</li>
+                <li>Professional development opportunities</li>
+                <li>Meaningful impact in your community</li>
+                <li>Supportive team environment</li>
+                <li>References for future opportunities</li>
+            </ul>
+        </div>
+
+        <div class="volunteer-grid">
+            <div class="volunteer-card">
+                <h3>📞 Helpline Volunteer</h3>
+                <p>Provide immediate support and resources to callers in crisis.</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Answer crisis calls with empathy</li>
+                        <li>Provide information about resources</li>
+                        <li>Document calls appropriately</li>
+                        <li>Follow safety protocols</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Remote</span>
+                        <span class="role-tag">Training Provided</span>
+                        <span class="role-tag">4-hour shifts</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 8+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('helpline')">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="volunteer-card">
+                <h3>💻 Digital Support Volunteer</h3>
+                <p>Help maintain our online platforms and provide digital support.</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Monitor online chat support</li>
+                        <li>Update resource information</li>
+                        <li>Assist with website maintenance</li>
+                        <li>Provide tech support to team</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Remote</span>
+                        <span class="role-tag">Flexible Hours</span>
+                        <span class="role-tag">Tech Skills</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 6+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('digital')">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="volunteer-card">
+                <h3>🏠 Shelter Support Volunteer</h3>
+                <p>Assist with daily operations at our safe shelters.</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Welcome new residents</li>
+                        <li>Assist with daily activities</li>
+                        <li>Help with children's activities</li>
+                        <li>Support shelter staff</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">In-person</span>
+                        <span class="role-tag">Background Check</span>
+                        <span class="role-tag">Training Provided</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 12+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('shelter')">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="volunteer-card">
+                <h3>📚 Community Educator</h3>
+                <p>Help raise awareness and educate communities about GBV.</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Facilitate workshops</li>
+                        <li>Distribute educational materials</li>
+                        <li>Represent at community events</li>
+                        <li>Engage with schools and organizations</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Public Speaking</span>
+                        <span class="role-tag">Flexible Schedule</span>
+                        <span class="role-tag">Training Provided</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 10+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('educator')">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="volunteer-card">
+                <h3>⚖️ Legal Support Volunteer</h3>
+                <p>Provide legal information and support (qualified professionals only).</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Legal information sessions</li>
+                        <li>Assist with protection orders</li>
+                        <li>Court accompaniment</li>
+                        <li>Legal resource development</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Professional</span>
+                        <span class="role-tag">Legal Background</span>
+                        <span class="role-tag">Training Provided</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 8+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('legal')">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="volunteer-card">
+                <h3>🎨 Creative & Administrative</h3>
+                <p>Support our organization with your creative or administrative skills.</p>
+                
+                <div class="volunteer-role">
+                    <h4>Responsibilities:</h4>
+                    <ul>
+                        <li>Graphic design</li>
+                        <li>Social media management</li>
+                        <li>Fundraising support</li>
+                        <li>Administrative tasks</li>
+                    </ul>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Flexible</span>
+                        <span class="role-tag">Remote Options</span>
+                        <span class="role-tag">Various Skills</span>
+                    </div>
+                    
+                    <p><strong>Time Commitment:</strong> 5+ hours per month</p>
+                    <button class="apply-btn" onclick="applyForRole('creative')">Apply Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="training-section">
+            <h3 class="purple-accent">🎓 Volunteer Training Program</h3>
+            <p>All volunteers receive comprehensive training to ensure they can provide safe, effective support.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div>
+                    <strong>Module 1: GBV Awareness</strong>
+                    <p>Understanding gender-based violence</p>
+                </div>
+                <div>
+                    <strong>Module 2: Active Listening</strong>
+                    <p>Effective communication skills</p>
+                </div>
+                <div>
+                    <strong>Module 3: Safety Protocols</strong>
+                    <p>Ensuring safety for all</p>
+                </div>
+                <div>
+                    <strong>Module 4: Resource Knowledge</strong>
+                    <p>Available support services</p>
+                </div>
+            </div>
+            
+            <button class="apply-btn" style="margin-top: 15px;" onclick="viewTrainingSchedule()">View Training Schedule</button>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📝 Volunteer Application</h2>
+            
+            <div class="success-message" id="successMessage">
+                ✅ Thank you for your application! We'll contact you within 3-5 business days.
+            </div>
+
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="volunteerRole">Preferred Volunteer Role *</label>
+                    <select id="volunteerRole" name="volunteerRole" required>
+                        <option value="">Select a role...</option>
+                        <option value="helpline">Helpline Volunteer</option>
+                        <option value="digital">Digital Support Volunteer</option>
+                        <option value="shelter">Shelter Support Volunteer</option>
+                        <option value="educator">Community Educator</option>
+                        <option value="legal">Legal Support Volunteer</option>
+                        <option value="creative">Creative & Administrative</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Weekly Availability (hours) *</label>
+                    <select id="availability" name="availability" required>
+                        <option value="">Select availability...</option>
+                        <option value="1-5">1-5 hours</option>
+                        <option value="5-10">5-10 hours</option>
+                        <option value="10-15">10-15 hours</option>
+                        <option value="15+">15+ hours</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Relevant Experience or Skills</label>
+                    <textarea id="experience" name="experience" rows="4" placeholder="Tell us about any relevant experience, skills, or qualifications..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to volunteer with us? *</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="Share your motivation for volunteering..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="backgroundCheck" name="backgroundCheck" required>
+                        I understand that some roles require a background check *
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="trainingCommitment" name="trainingCommitment" required>
+                        I commit to completing the required training program *
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('volunteer.html');
+                analytics.trackFeatureUse('volunteer_page_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Volunteer Application Functions
+        function applyForRole(role) {
+            alert(`Applying for ${role} volunteer position...\n\nYou will be redirected to the application form.`);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('volunteer_role_application');
+                analytics.trackFeatureUse(`role_${role}_application`);
+            }
+        }
+        
+        function viewTrainingSchedule() {
+            alert('Opening volunteer training schedule...\n\nTraining sessions are held monthly with flexible options.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('training_schedule_viewed');
+            }
+        }
+        
+        // Volunteer Form Handling
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // Hide success message after 8 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 8000);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('volunteer_application_submitted');
+            }
+        });
+    </script>
+</body>
+</html>
