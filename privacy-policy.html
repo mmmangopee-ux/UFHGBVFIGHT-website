@@ -1,0 +1,611 @@
+<!-- privacy-policy.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Privacy Policy - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .policy-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+        }
+        .policy-point {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .highlight-box {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #6A0DAD;
+        }
+        .contact-info {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .back-to-top {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-to-top-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-to-top-btn:hover {
+            background: #8A2BE2;
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .toc ul {
+            columns: 2;
+            margin: 10px 0;
+        }
+        .toc li {
+            margin: 5px 0;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .toc ul {
+                columns: 1;
+            }
+            
+            .policy-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Privacy Policy & Data Protection</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">🔒 Privacy Policy</h2>
+        <p><strong>Last Updated:</strong> January 15, 2024</p>
+        
+        <div class="highlight-box">
+            <h3 class="purple-accent">🛡️ Our Commitment to Your Privacy</h3>
+            <p>At GBV Safe Corner, your privacy and safety are our highest priorities. We are committed to protecting your personal information and ensuring complete confidentiality in all our services.</p>
+        </div>
+
+        <div class="toc">
+            <h3 class="purple-accent">📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#information-collection">Information We Collect</a></li>
+                <li><a href="#how-we-use">How We Use Information</a></li>
+                <li><a href="#data-protection">Data Protection</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#cookies">Cookies & Tracking</a></li>
+                <li><a href="#third-party">Third-Party Services</a></li>
+                <li><a href="#security">Security Measures</a></li>
+                <li><a href="#changes">Policy Changes</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="policy-section" id="information-collection">
+            <h3 class="purple-accent">📋 Information We Collect</h3>
+            
+            <div class="policy-point">
+                <h4>Anonymous Reporting</h4>
+                <p>When you use our anonymous reporting system:</p>
+                <ul>
+                    <li>No personal identifying information is collected</li>
+                    <li>Reports are completely anonymous</li>
+                    <li>IP addresses are not stored or logged</li>
+                    <li>No cookies are used for tracking</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Voluntary Information</h4>
+                <p>For services where you choose to provide information:</p>
+                <ul>
+                    <li>Contact information (if you request follow-up)</li>
+                    <li>Service preferences and needs assessment</li>
+                    <li>Communication history with our support team</li>
+                    <li>Safety plan information (stored locally on your device)</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Technical Information</h4>
+                <p>For website functionality and improvement:</p>
+                <ul>
+                    <li>Browser type and version</li>
+                    <li>Device type and operating system</li>
+                    <li>General location (country/city level for service matching)</li>
+                    <li>Website usage patterns (anonymized and aggregated)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-section" id="how-we-use">
+            <h3 class="purple-accent">🎯 How We Use Your Information</h3>
+            
+            <div class="policy-point">
+                <h4>Service Provision</h4>
+                <ul>
+                    <li>Provide immediate support and resources</li>
+                    <li>Connect you with appropriate services</li>
+                    <li>Personalize your safety planning experience</li>
+                    <li>Improve our website and services</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Communication</h4>
+                <ul>
+                    <li>Respond to your inquiries and requests</li>
+                    <li>Send important service updates (if requested)</li>
+                    <li>Provide follow-up support when appropriate</li>
+                    <li>Share safety alerts and resources</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Analytics & Improvement</h4>
+                <ul>
+                    <li>Understand how our services are used</li>
+                    <li>Identify areas for improvement</li>
+                    <li>Measure the effectiveness of our resources</li>
+                    <li>Ensure website security and performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-section" id="data-protection">
+            <h3 class="purple-accent">🛡️ Data Protection & Confidentiality</h3>
+            
+            <div class="highlight-box">
+                <h4>🔐 Strict Confidentiality</h4>
+                <p>We follow strict confidentiality protocols aligned with international data protection standards and South African privacy laws.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Data Minimization</h4>
+                <p>We collect only the information necessary to provide our services. Anonymous reporting requires no personal data.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Limited Access</h4>
+                <p>Only authorized staff with specific security clearance can access personal information, and only when necessary to provide services.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Data Retention</h4>
+                <p>We retain personal information only as long as necessary to provide services, comply with legal obligations, or protect vital interests.</p>
+            </div>
+        </div>
+
+        <div class="policy-section" id="your-rights">
+            <h3 class="purple-accent">📜 Your Rights</h3>
+            
+            <div class="policy-point">
+                <h4>Right to Access</h4>
+                <p>You have the right to request access to any personal information we hold about you.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Right to Correction</h4>
+                <p>You can request corrections to any inaccurate or incomplete personal information.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Right to Deletion</h4>
+                <p>You may request deletion of your personal information, subject to legal requirements.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Right to Object</h4>
+                <p>You can object to certain processing of your personal information.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Right to Data Portability</h4>
+                <p>Where applicable, you can request transfer of your data to another service.</p>
+            </div>
+        </div>
+
+        <div class="policy-section" id="cookies">
+            <h3 class="purple-accent">🍪 Cookies & Tracking</h3>
+            
+            <div class="policy-point">
+                <h4>Essential Cookies</h4>
+                <p>We use only essential cookies required for website functionality, such as:</p>
+                <ul>
+                    <li>Session management for secure areas</li>
+                    <li>Language preference settings</li>
+                    <li>Security and fraud prevention</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>No Tracking Cookies</h4>
+                <p>We do not use tracking cookies, advertising cookies, or any third-party analytics that compromise your privacy.</p>
+            </div>
+
+            <div class="policy-point">
+                <h4>Local Storage</h4>
+                <p>We use browser local storage for:</p>
+                <ul>
+                    <li>Saving your safety plan progress locally on your device</li>
+                    <li>Remembering your language preferences</li>
+                    <li>Storing temporary form data (cleared when you leave)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-section" id="third-party">
+            <h3 class="purple-accent">🤝 Third-Party Services</h3>
+            
+            <div class="policy-point">
+                <h4>Service Providers</h4>
+                <p>We work with trusted service providers who adhere to strict data protection standards:</p>
+                <ul>
+                    <li>Secure hosting providers with data protection compliance</li>
+                    <li>Communication platforms with end-to-end encryption</li>
+                    <li>Payment processors for donations (with your consent)</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Legal Requirements</h4>
+                <p>We may disclose information when required by law, such as:</p>
+                <ul>
+                    <li>To comply with legal processes</li>
+                    <li>To protect against imminent harm</li>
+                    <li>To prevent illegal activities</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-section" id="security">
+            <h3 class="purple-accent">🔐 Security Measures</h3>
+            
+            <div class="policy-point">
+                <h4>Technical Security</h4>
+                <ul>
+                    <li>End-to-end encryption for all data transmissions</li>
+                    <li>Secure servers with regular security updates</li>
+                    <li>Regular security audits and vulnerability assessments</li>
+                    <li>Secure backup and disaster recovery procedures</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Organizational Security</h4>
+                <ul>
+                    <li>Staff training on data protection and confidentiality</li>
+                    <li>Strict access controls and authentication measures</li>
+                    <li>Regular privacy impact assessments</li>
+                    <li>Incident response and breach notification procedures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-section" id="changes">
+            <h3 class="purple-accent">🔄 Policy Changes</h3>
+            
+            <div class="policy-point">
+                <h4>Updates & Notifications</h4>
+                <p>We may update this privacy policy to reflect changes in our practices or legal requirements. Significant changes will be:</p>
+                <ul>
+                    <li>Posted prominently on our website</li>
+                    <li>Communicated to registered users</li>
+                    <li>Dated with the effective revision date</li>
+                </ul>
+            </div>
+
+            <div class="policy-point">
+                <h4>Continued Use</h4>
+                <p>Your continued use of our services after changes constitutes acceptance of the updated policy.</p>
+            </div>
+        </div>
+
+        <div class="contact-info" id="contact">
+            <h3 class="purple-accent">📞 Contact Us</h3>
+            <p>If you have any questions about this privacy policy or our data practices, please contact us:</p>
+            
+            <div style="margin-top: 15px;">
+                <p><strong>Privacy Officer:</strong> privacy@gbvsafecorner.org</p>
+                <p><strong>General Inquiries:</strong> info@gbvsafecorner.org</p>
+                <p><strong>Phone:</strong> 0800 428 428 (GBV Command Centre)</p>
+                <p><strong>Address:</strong> [Registered Office Address]</p>
+            </div>
+
+            <p style="margin-top: 15px; font-size: 14px;">
+                <strong>Complaints:</strong> If you believe we have not adequately addressed your privacy concerns, you may contact the Information Regulator's Office of South Africa.
+            </p>
+        </div>
+
+        <div class="back-to-top">
+            <button class="back-to-top-btn" onclick="scrollToTop()">Back to Top</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('privacy-policy.html');
+                analytics.trackFeatureUse('privacy_policy_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
