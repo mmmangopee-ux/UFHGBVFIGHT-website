@@ -1,0 +1,511 @@
+<!-- counseling.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counseling & Mental Health - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .service-category {
+            margin: 25px 0;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .service-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.1);
+        }
+        .service-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .counselor-card {
+            background: #e8f4fd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #6A0DAD;
+        }
+        .book-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        .book-btn:hover {
+            background: #8A2BE2;
+        }
+        .emergency-counseling {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .emergency-counseling h3 {
+            color: #dc3545;
+        }
+        .self-help-resource {
+            background: #e8f5e8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .service-category {
+                padding: 20px;
+            }
+            
+            .counselor-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Counseling & Mental Health Support</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">💬 Professional Counseling Services</h2>
+        <p>Healing from trauma takes time and professional support. We offer various counseling options to help you on your journey to recovery in a safe, confidential environment.</p>
+        
+        <div class="service-category emergency-counseling">
+            <h3>🚨 24/7 Crisis Counseling</h3>
+            <div class="service-item">
+                <h4>Immediate Support Available</h4>
+                <p><strong>Lifeline Counseling:</strong> 0861 322 322</p>
+                <p><strong>SADAG Mental Health Line:</strong> 011 234 4837</p>
+                <p><strong>Suicide Crisis Line:</strong> 0800 567 567</p>
+                <p><strong>GBV Command Centre:</strong> 0800 428 428</p>
+                <button class="book-btn" onclick="startCrisisChat()">Start Crisis Chat</button>
+            </div>
+        </div>
+
+        <div class="service-category">
+            <h3 class="purple-accent">👥 Individual Counseling</h3>
+            <div class="service-item">
+                <h4>One-on-One Therapy Sessions</h4>
+                <p>Private sessions with trained GBV counselors specializing in trauma recovery.</p>
+                <ul>
+                    <li>Trauma-focused therapy</li>
+                    <li>Cognitive Behavioral Therapy (CBT)</li>
+                    <li>EMDR for trauma processing</li>
+                    <li>Confidential and safe environment</li>
+                    <li>Sliding scale fees available</li>
+                </ul>
+                <button class="book-btn" onclick="bookCounseling('individual')">Book Individual Session</button>
+            </div>
+            
+            <div class="counselor-card">
+                <h4>Available Counselors</h4>
+                <p><strong>Dr. Sarah Johnson</strong> - Clinical Psychologist, 15 years experience in trauma therapy</p>
+                <p><strong>Ms. Precious Mbatha</strong> - Registered Counselor, specializes in GBV recovery</p>
+                <p><strong>Dr. James Peterson</strong> - Trauma Specialist, EMDR certified</p>
+            </div>
+        </div>
+
+        <div class="service-category">
+            <h3 class="purple-accent">👨‍👩‍👧‍👦 Group Therapy & Support</h3>
+            <div class="service-item">
+                <h4>Healing Together</h4>
+                <p>Connect with others who understand your experience in a supportive group setting.</p>
+                <ul>
+                    <li>Weekly support groups</li>
+                    <li>Themed workshops (anger management, self-esteem, etc.)</li>
+                    <li>Peer support networks</li>
+                    <li>Online and in-person options</li>
+                </ul>
+                <button class="book-btn" onclick="bookCounseling('group')">Join Support Group</button>
+            </div>
+            
+            <div class="service-item">
+                <h4>Current Group Sessions</h4>
+                <p><strong>Survivors Circle:</strong> Mondays 6-7:30 PM (Virtual)</p>
+                <p><strong>Healing Journey:</strong> Wednesdays 10-11:30 AM (Johannesburg)</p>
+                <p><strong>Strength in Numbers:</strong> Fridays 2-3:30 PM (Cape Town)</p>
+            </div>
+        </div>
+
+        <div class="service-category">
+            <h3 class="purple-accent">👶 Child & Family Counseling</h3>
+            <div class="service-item">
+                <h4>Specialized Support for Families</h4>
+                <p>Helping children and families heal from the impact of domestic violence.</p>
+                <ul>
+                    <li>Play therapy for children</li>
+                    <li>Family counseling sessions</li>
+                    <li>Parenting support</li>
+                    <li>Child witnesses of violence programs</li>
+                </ul>
+                <button class="book-btn" onclick="bookCounseling('family')">Book Family Session</button>
+            </div>
+            
+            <div class="service-item">
+                <h4>Childline Services</h4>
+                <p><strong>Childline:</strong> 0800 055 555</p>
+                <p>24/7 counseling and support for children and teenagers</p>
+            </div>
+        </div>
+
+        <div class="service-category">
+            <h3 class="purple-accent">💻 Online Counseling Options</h3>
+            <div class="service-item">
+                <h4>Virtual Support from Anywhere</h4>
+                <p>Access professional counseling from the safety and privacy of your home.</p>
+                <ul>
+                    <li>Secure video sessions</li>
+                    <li>Text-based counseling</li>
+                    <li>Anonymous chat options</li>
+                    <li>Flexible scheduling</li>
+                </ul>
+                <button class="book-btn" onclick="startOnlineCounseling()">Start Online Session</button>
+                <button class="book-btn" onclick="openChatBot()">Chat with Support Bot</button>
+            </div>
+        </div>
+
+        <div class="self-help-resource">
+            <h3 class="purple-accent">📚 Self-Help Resources</h3>
+            <p>Access these resources while waiting for counseling or for additional support:</p>
+            <button class="book-btn" onclick="downloadResource('coping-strategies')">Coping Strategies Guide</button>
+            <button class="book-btn" onclick="downloadResource('mindfulness-exercises')">Mindfulness Exercises</button>
+            <button class="book-btn" onclick="downloadResource('trauma-recovery-workbook')">Trauma Recovery Workbook</button>
+            <button class="book-btn" onclick="openMeditationGuide()">Guided Meditation</button>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📞 Immediate Help Lines</h2>
+            <div style="background: #e8f4fd; padding: 20px; border-radius: 8px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div>
+                        <h4>Mental Health Crisis</h4>
+                        <p><strong>SADAG:</strong> 011 234 4837</p>
+                        <p><strong>Suicide Crisis:</strong> 0800 567 567</p>
+                    </div>
+                    <div>
+                        <h4>Substance Abuse</h4>
+                        <p><strong>SANCA:</strong> 011 892 3829</p>
+                        <p><strong>AA Helpline:</strong> 0861 435 722</p>
+                    </div>
+                    <div>
+                        <h4>Legal & Protection</h4>
+                        <p><strong>Legal Aid:</strong> 0800 110 110</p>
+                        <p><strong>Police:</strong> 10111</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('counseling.html');
+                analytics.trackFeatureUse('counseling_page_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Counseling Booking Functions
+        function bookCounseling(type) {
+            alert('Booking ' + type + ' counseling session...\n\nYou will be redirected to our secure booking system.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('counseling_booking_' + type);
+            }
+        }
+        
+        function startCrisisChat() {
+            alert('Connecting you with a crisis counselor...\n\nThis service is available 24/7.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('crisis_chat_started');
+            }
+        }
+        
+        function startOnlineCounseling() {
+            alert('Starting online counseling session...\n\nYou will need a stable internet connection.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('online_counseling_started');
+            }
+        }
+        
+        function openChatBot() {
+            alert('Opening support chatbot...\n\nThis AI assistant can provide immediate coping strategies.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('support_chatbot_opened');
+            }
+        }
+        
+        function downloadResource(type) {
+            alert('Downloading ' + type.replace(/-/g, ' ') + '...');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('resource_download_' + type);
+            }
+        }
+        
+        function openMeditationGuide() {
+            alert('Opening guided meditation...\n\nFind a quiet, comfortable space for this exercise.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('meditation_guide_opened');
+            }
+        }
+    </script>
+</body>
+</html>
