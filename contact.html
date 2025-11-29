@@ -1,0 +1,516 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact & Support - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .contact-card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 13, 173, 0.15);
+        }
+        .contact-card h3 {
+            color: #6A0DAD;
+            margin-bottom: 15px;
+        }
+        .contact-info {
+            margin: 10px 0;
+        }
+        .contact-info strong {
+            color: #6A0DAD;
+        }
+        .emergency-contact {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .emergency-contact h3 {
+            color: #dc3545;
+        }
+        .form-group { 
+            margin: 15px 0; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            color: #6A0DAD;
+        }
+        textarea, select, input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            font-family: Arial; 
+            box-sizing: border-box;
+        }
+        .submit-btn { 
+            background: #6A0DAD; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background: #8A2BE2;
+            transform: translateY(-2px);
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            display: none;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Contact & Support Services</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">📞 Get Help & Support</h2>
+        <p>We're here to help you access the support and resources you need. Choose the contact method that feels safest for you.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-card emergency-contact">
+                <h3>🚨 Emergency Contacts</h3>
+                <div class="contact-info">
+                    <strong>GBV Command Centre:</strong> 0800 428 428
+                </div>
+                <div class="contact-info">
+                    <strong>Police Emergency:</strong> 10111
+                </div>
+                <div class="contact-info">
+                    <strong>Ambulance:</strong> 10177
+                </div>
+                <div class="contact-info">
+                    <strong>Lifeline Counseling:</strong> 0861 322 322
+                </div>
+                <div class="contact-info">
+                    <strong>Suicide Crisis Line:</strong> 0800 567 567
+                </div>
+                <p style="margin-top: 15px; font-size: 14px; color: #721c24;">
+                    <strong>For immediate danger, call emergency services first.</strong>
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <h3>🏥 Medical Support</h3>
+                <div class="contact-info">
+                    <strong>Thuthuzela Care Centres:</strong> 24/7 support
+                </div>
+                <div class="contact-info">
+                    <strong>Rape Crisis:</strong> 021 447 9762
+                </div>
+                <div class="contact-info">
+                    <strong>TEARS Foundation:</strong> 010 590 5920
+                </div>
+                <div class="contact-info">
+                    <strong>POWA (People Opposing Women Abuse):</strong> 011 642 4345
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h3>⚖️ Legal Assistance</h3>
+                <div class="contact-info">
+                    <strong>Legal Aid South Africa:</strong> 0800 110 110
+                </div>
+                <div class="contact-info">
+                    <strong>Women's Legal Centre:</strong> 021 424 5660
+                </div>
+                <div class="contact-info">
+                    <strong>Commission for Gender Equality:</strong> 0800 007 709
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h3>👥 Counseling & Support Groups</h3>
+                <div class="contact-info">
+                    <strong>SADAG Mental Health Line:</strong> 011 234 4837
+                </div>
+                <div class="contact-info">
+                    <strong>Family and Marriage Society:</strong> 011 788 4784
+                </div>
+                <div class="contact-info">
+                    <strong>Childline:</strong> 0800 055 555
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">✉️ Send Us a Secure Message</h2>
+            <p>If you need specific assistance or have questions, send us a secure message. We'll respond within 24 hours.</p>
+            
+            <div class="success-message" id="successMessage">
+                ✅ Thank you for your message. We'll respond as soon as possible.
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactType">Type of Assistance Needed *</label>
+                    <select id="contactType" name="contactType" required>
+                        <option value="">Select type of assistance...</option>
+                        <option value="counseling">Counseling Services</option>
+                        <option value="legal">Legal Assistance</option>
+                        <option value="shelter">Shelter/Housing</option>
+                        <option value="medical">Medical Support</option>
+                        <option value="resources">Resource Information</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="urgency">Urgency Level</label>
+                    <select id="urgency" name="urgency">
+                        <option value="low">Low - General inquiry</option>
+                        <option value="medium">Medium - Need support within days</option>
+                        <option value="high">High - Need immediate support</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Please describe how we can help you..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMethod">Preferred Contact Method</label>
+                    <select id="contactMethod" name="contactMethod">
+                        <option value="email">Email response</option>
+                        <option value="phone">Phone call</option>
+                        <option value="secure_message">Secure message on platform</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="consent" name="consent" required>
+                        I understand this contact form is secure and my information will be protected *
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Secure Message</button>
+            </form>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📍 Find Local Services</h2>
+            <p>Use our interactive map to find GBV support services near you. All locations are verified and safe.</p>
+            
+            <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; text-align: center;">
+                <p><strong>Interactive Service Map</strong></p>
+                <p>Our service locator helps you find:</p>
+                <ul style="text-align: left; display: inline-block;">
+                    <li>Shelters and safe houses</li>
+                    <li>Counseling centers</li>
+                    <li>Legal aid offices</li>
+                    <li>Medical facilities</li>
+                    <li>Police stations with GBV desks</li>
+                </ul>
+                <button style="background: #6A0DAD; color: white; padding: 12px 25px; border: none; border-radius: 5px; margin-top: 15px; cursor: pointer;">
+                    Open Service Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('contact.html');
+                analytics.trackFeatureUse('contact_page_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Contact Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('contact_form_submitted');
+            }
+        });
+    </script>
+</body>
+</html>
