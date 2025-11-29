@@ -1,0 +1,482 @@
+<!-- legal-rights.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Know Your Rights - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .rights-category {
+            margin: 25px 0;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .rights-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.1);
+        }
+        .right-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .right-item h4 {
+            color: #6A0DAD;
+            margin-bottom: 10px;
+        }
+        .legal-step {
+            background: #e8f4fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #6A0DAD;
+        }
+        .download-resource {
+            background: #e8f5e8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .download-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #8A2BE2;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .rights-category {
+                padding: 20px;
+            }
+            
+            .right-item {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Know Your Legal Rights</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">⚖️ Your Legal Rights & Protection</h2>
+        <p>Understanding your legal rights is crucial for protection and justice. This guide outlines your rights under South African law and the legal processes available to you.</p>
+        
+        <div class="download-resource">
+            <h3 class="purple-accent">📚 Quick Reference Guide</h3>
+            <p>Download our comprehensive legal rights guide for offline access.</p>
+            <button class="download-btn" onclick="downloadResource('legal-rights-guide')">Download PDF Guide</button>
+            <button class="download-btn" onclick="downloadResource('protection-order-info')">Protection Order Info</button>
+        </div>
+
+        <div class="rights-category">
+            <h3 class="purple-accent">🛡️ Protection Orders</h3>
+            <div class="right-item">
+                <h4>What is a Protection Order?</h4>
+                <p>A protection order is a court order that protects you from further abuse by setting conditions the abuser must follow.</p>
+            </div>
+            
+            <div class="right-item">
+                <h4>How to Apply for a Protection Order</h4>
+                <div class="legal-step">
+                    <strong>Step 1:</strong> Go to your nearest Magistrate's Court
+                </div>
+                <div class="legal-step">
+                    <strong>Step 2:</strong> Ask for the Protection Order Clerk
+                </div>
+                <div class="legal-step">
+                    <strong>Step 3:</strong> Complete the application forms
+                </div>
+                <div class="legal-step">
+                    <strong>Step 4:</strong> Get an interim protection order immediately
+                </div>
+                <div class="legal-step">
+                    <strong>Step 5:</strong> Attend the final hearing (usually within 10 days)
+                </div>
+            </div>
+            
+            <div class="right-item">
+                <h4>Your Rights Regarding Protection Orders</h4>
+                <ul>
+                    <li>You can apply for free - no cost involved</li>
+                    <li>You can get an interim order the same day</li>
+                    <li>The order can prohibit various forms of abuse</li>
+                    <li>Violation of the order is a criminal offense</li>
+                    <li>You can request the removal of firearms from the abuser</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rights-category">
+            <h3 class="purple-accent">🚨 Reporting to Police</h3>
+            <div class="right-item">
+                <h4>Your Rights When Reporting</h4>
+                <ul>
+                    <li>You have the right to be treated with dignity and respect</li>
+                    <li>You can request a female officer if preferred</li>
+                    <li>You can bring a support person with you</li>
+                    <li>You have the right to privacy during the process</li>
+                    <li>The police must provide you with a case number</li>
+                </ul>
+            </div>
+            
+            <div class="right-item">
+                <h4>What Police Must Do</h4>
+                <ul>
+                    <li>Take your statement seriously</li>
+                    <li>Open a case docket immediately</li>
+                    <li>Provide you with a case number</li>
+                    <li>Arrest the perpetrator if there's reasonable suspicion</li>
+                    <li>Refer you to support services</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rights-category">
+            <h3 class="purple-accent">🏛️ Court Processes</h3>
+            <div class="right-item">
+                <h4>Your Rights in Court</h4>
+                <ul>
+                    <li>Right to legal representation</li>
+                    <li>Right to apply for Legal Aid if you cannot afford a lawyer</li>
+                    <li>Right to protection from intimidation</li>
+                    <li>Right to have a support person present</li>
+                    <li>Right to testify in camera (in private) in certain cases</li>
+                </ul>
+            </div>
+            
+            <div class="right-item">
+                <h4>Special Measures for Vulnerable Witnesses</h4>
+                <ul>
+                    <li>Testifying via closed-circuit television</li>
+                    <li>Having an intermediary present</li>
+                    <li>Court preparation services</li>
+                    <li>Protection from cross-examination by the accused</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rights-category">
+            <h3 class="purple-accent">💼 Employment Rights</h3>
+            <div class="right-item">
+                <h4>Domestic Violence Leave</h4>
+                <p>Under the Domestic Violence Act, you are entitled to 10 days paid leave per year to address domestic violence issues.</p>
+            </div>
+            
+            <div class="right-item">
+                <h4>Workplace Protection</h4>
+                <ul>
+                    <li>Your employer cannot discriminate against you for being a victim</li>
+                    <li>You have the right to reasonable accommodations for safety</li>
+                    <li>Your employer must protect your confidentiality</li>
+                    <li>You cannot be fired for taking domestic violence leave</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rights-category">
+            <h3 class="purple-accent">👶 Children's Rights</h3>
+            <div class="right-item">
+                <h4>Protection of Children</h4>
+                <ul>
+                    <li>Children have the right to be protected from all forms of violence</li>
+                    <li>Witnessing domestic violence is considered emotional abuse</li>
+                    <li>Children can be included in protection orders</li>
+                    <li>Special procedures exist for child witnesses</li>
+                </ul>
+            </div>
+            
+            <div class="right-item">
+                <h4>Child Maintenance & Support</h4>
+                <p>You have the right to claim maintenance for your children, regardless of your relationship with the other parent.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📞 Legal Support Services</h2>
+            <div style="background: #e8f4fd; padding: 20px; border-radius: 8px;">
+                <h4>Free Legal Assistance</h4>
+                <p><strong>Legal Aid South Africa:</strong> 0800 110 110</p>
+                <p><strong>Women's Legal Centre:</strong> 021 424 5660</p>
+                <p><strong>Legal Resources:</strong> 
+                    <button class="download-btn" onclick="downloadResource('legal-aid-application')">Legal Aid Application</button>
+                    <button class="download-btn" onclick="downloadResource('court-forms')">Court Forms</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('legal-rights.html');
+                analytics.trackFeatureUse('legal_rights_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Resource Download Functionality
+        function downloadResource(type) {
+            // In a real implementation, this would trigger actual file downloads
+            alert('Downloading ' + type.replace(/-/g, ' ') + '...');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('resource_download_' + type);
+            }
+        }
+    </script>
+</body>
+</html>
