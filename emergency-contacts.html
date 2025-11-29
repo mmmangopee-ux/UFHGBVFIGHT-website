@@ -1,0 +1,528 @@
+<!-- emergency-contacts.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Contacts - GBV Safe Corner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6A0DAD">
+    
+    <!-- ANALYTICS INTEGRATED -->
+    <script src="analytics.js"></script>
+    <script src="navigation.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            line-height: 1.6; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #6A0DAD, #8A2BE2);
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+        }
+        .logo-text {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .logo-text span {
+            display: block;
+        }
+        
+        .content-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.1);
+        }
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .contact-card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #6A0DAD;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 13, 173, 0.15);
+        }
+        .contact-card.critical {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .contact-card.medical {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+        }
+        .contact-card.legal {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+        }
+        .contact-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6A0DAD;
+            margin: 10px 0;
+        }
+        .contact-card.critical .contact-number {
+            color: #dc3545;
+        }
+        .quick-call-btn {
+            background: #6A0DAD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        .quick-call-btn:hover {
+            background: #8A2BE2;
+        }
+        .download-section {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .province-contacts {
+            margin: 25px 0;
+        }
+        .province-section {
+            background: #f9f9f9;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #6A0DAD;
+        }
+        .purple-accent {
+            color: #6A0DAD;
+        }
+        
+        /* Enhanced Emergency Exit */
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        .emergency-exit-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .emergency-exit-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+        }
+        
+        /* Language Selector */
+        #languageSelector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #6A0DAD;
+            background: white;
+            color: #6A0DAD;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Accessibility */
+        :focus {
+            outline: 3px solid #6A0DAD;
+            outline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .emergency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 20px;
+            }
+            
+            .contact-number {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-text">
+            <span>GBV</span>
+            <span>SAFE</span>
+            <span>CORNER</span>
+        </div>
+        <p>Emergency Contacts Directory</p>
+    </div>
+
+    <!-- Navigation auto-loaded here -->
+
+    <div class="content-section">
+        <h2 class="purple-accent">🚨 Emergency Contacts Directory</h2>
+        <p>Quick access to critical emergency services. Save these numbers in your phone and keep a printed copy in a safe place.</p>
+        
+        <div class="download-section">
+            <h3 class="purple-accent">📱 Save These Contacts</h3>
+            <p>Download a printable emergency contacts card for quick reference.</p>
+            <button class="quick-call-btn" onclick="downloadContactCard()">Download Contact Card</button>
+            <button class="quick-call-btn" onclick="addToPhoneContacts()">Add to Phone Contacts</button>
+        </div>
+
+        <div class="emergency-grid">
+            <div class="contact-card critical">
+                <h3>🚨 Immediate Emergency</h3>
+                <div class="contact-number">10111</div>
+                <p><strong>Police Emergency</strong></p>
+                <p>24/7 response for immediate danger</p>
+                <button class="quick-call-btn" onclick="simulateCall('10111')">Call Police</button>
+            </div>
+
+            <div class="contact-card critical">
+                <h3>🆘 GBV Emergency</h3>
+                <div class="contact-number">0800 428 428</div>
+                <p><strong>GBV Command Centre</strong></p>
+                <p>24/7 GBV support and counseling</p>
+                <button class="quick-call-btn" onclick="simulateCall('0800428428')">Call GBV Helpline</button>
+            </div>
+
+            <div class="contact-card medical">
+                <h3>🏥 Medical Emergency</h3>
+                <div class="contact-number">10177</div>
+                <p><strong>Ambulance Services</strong></p>
+                <p>Emergency medical response</p>
+                <button class="quick-call-btn" onclick="simulateCall('10177')">Call Ambulance</button>
+            </div>
+
+            <div class="contact-card">
+                <h3>💬 Crisis Counseling</h3>
+                <div class="contact-number">0861 322 322</div>
+                <p><strong>Lifeline Counseling</strong></p>
+                <p>24/7 mental health support</p>
+                <button class="quick-call-btn" onclick="simulateCall('0861322322')">Call Lifeline</button>
+            </div>
+
+            <div class="contact-card">
+                <h3>😔 Suicide Prevention</h3>
+                <div class="contact-number">0800 567 567</div>
+                <p><strong>Suicide Crisis Line</strong></p>
+                <p>24/7 suicide prevention support</p>
+                <button class="quick-call-btn" onclick="simulateCall('0800567567')">Call Crisis Line</button>
+            </div>
+
+            <div class="contact-card legal">
+                <h3>⚖️ Legal Assistance</h3>
+                <div class="contact-number">0800 110 110</div>
+                <p><strong>Legal Aid South Africa</strong></p>
+                <p>Free legal advice and representation</p>
+                <button class="quick-call-btn" onclick="simulateCall('0800110110')">Call Legal Aid</button>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">📍 Provincial Emergency Contacts</h2>
+            
+            <div class="province-contacts">
+                <div class="province-section">
+                    <h3>Gauteng</h3>
+                    <p><strong>Johannesburg SAPS Victim Support:</strong> 011 403 6021</p>
+                    <p><strong>POWA Johannesburg:</strong> 011 642 4345</p>
+                    <p><strong>People Opposing Women Abuse:</strong> 011 642 4345</p>
+                </div>
+
+                <div class="province-section">
+                    <h3>Western Cape</h3>
+                    <p><strong>Rape Crisis Cape Town:</strong> 021 447 9762</p>
+                    <p><strong>Saartjie Baartman Centre:</strong> 021 633 5287</p>
+                    <p><strong>St Anne's Homes:</strong> 021 448 6792</p>
+                </div>
+
+                <div class="province-section">
+                    <h3>KwaZulu-Natal</h3>
+                    <p><strong>Durban Rape Crisis:</strong> 031 332 9226</p>
+                    <p><strong>Open Door Crisis Centre:</strong> 031 709 2679</p>
+                    <p><strong>LifeLine Durban:</strong> 031 312 2323</p>
+                </div>
+
+                <div class="province-section">
+                    <h3>Eastern Cape</h3>
+                    <p><strong>Buffalo City DV Centre:</strong> 043 722 2565</p>
+                    <p><strong>Port Elizabeth Care Centre:</strong> 041 484 4111</p>
+                    <p><strong>Masimanyane Women's Centre:</strong> 043 742 2132</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="purple-accent">👶 Specialized Support Services</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div class="contact-card">
+                    <h3>Child Protection</h3>
+                    <div class="contact-number">0800 055 555</div>
+                    <p><strong>Childline South Africa</strong></p>
+                    <button class="quick-call-btn" onclick="simulateCall('0800055555')">Call Childline</button>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Elder Abuse</h3>
+                    <div class="contact-number">0800 333 666</div>
+                    <p><strong>Elderly Persons Protection</strong></p>
+                    <button class="quick-call-btn" onclick="simulateCall('0800333666')">Call Elder Protection</button>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Substance Abuse</h3>
+                    <div class="contact-number">0800 121 314</div>
+                    <p><strong>Substance Abuse Helpline</strong></p>
+                    <button class="quick-call-btn" onclick="simulateCall('0800121314')">Call Substance Help</button>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Human Trafficking</h3>
+                    <div class="contact-number">0800 222 777</div>
+                    <p><strong>Trafficking Help Line</strong></p>
+                    <button class="quick-call-btn" onclick="simulateCall('0800222777')">Call Trafficking Help</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h3 class="purple-accent">📋 Emergency Preparedness</h3>
+            <p>Create your personal emergency contact list with trusted friends, family, and support services.</p>
+            <button class="quick-call-btn" onclick="createPersonalContactList()">Create Personal Contact List</button>
+            <button class="quick-call-btn" onclick="downloadEmergencyPlan()">Download Emergency Plan Template</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Security & Privacy
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        
+        // Enhanced Emergency Exit
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create emergency exit button
+            const emergencyExit = document.createElement('div');
+            emergencyExit.className = 'emergency-exit';
+            emergencyExit.innerHTML = `
+                <button onclick="emergencyRedirect()" 
+                        title="Quickly leaves this site and clears data"
+                        class="emergency-exit-btn">
+                    🚨 Quick Exit
+                </button>
+            `;
+            document.body.appendChild(emergencyExit);
+
+            // Enhanced emergency redirect
+            window.emergencyRedirect = function() {
+                // Clear sensitive data
+                localStorage.removeItem('safetyPlanProgress');
+                sessionStorage.clear();
+                document.querySelectorAll('input, textarea').forEach(element => {
+                    element.value = '';
+                });
+                // Redirect to safe page
+                window.location.href = 'https://www.google.com/search?q=weather';
+            };
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || (e.ctrlKey && e.key === 'q')) {
+                    emergencyRedirect();
+                }
+            });
+            
+            // Create Language Selector
+            const languageSelector = document.createElement('select');
+            languageSelector.id = 'languageSelector';
+            languageSelector.innerHTML = `
+                <option value="en">English</option>
+                <option value="zu">Zulu</option>
+                <option value="xh">Xhosa</option>
+                <option value="af">Afrikaans</option>
+            `;
+            languageSelector.onchange = (e) => changeLanguage(e.target.value);
+            document.body.appendChild(languageSelector);
+            
+            // Initialize language
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackPageView('emergency-contacts.html');
+                analytics.trackFeatureUse('emergency_contacts_loaded');
+            }
+        });
+        
+        // Language Support
+        const translations = {
+            en: {
+                'home': 'Home',
+                'report': 'Report',
+                'support': 'Support',
+                'stories': 'Stories',
+                'library': 'Resources',
+                'community': 'Community',
+                'events': 'Events',
+                'about': 'About',
+                'safety': 'Safety',
+                'assessment': 'Risk Check',
+                'education': 'Education',
+                'login': 'Admin'
+            },
+            zu: {
+                'home': 'Ikhaya',
+                'report': 'Bika',
+                'support': 'Usizo',
+                'stories': 'Izindaba',
+                'library': 'Izinsiza',
+                'community': 'Umphakathi',
+                'events': 'Imicimbi',
+                'about': 'Mayelana',
+                'safety': 'Ukuphepha',
+                'assessment': 'Ukuhlola',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            xh: {
+                'home': 'Ekhaya',
+                'report': 'Xela',
+                'support': 'Uncedo',
+                'stories': 'Iimbali',
+                'library': 'Iindlela',
+                'community': 'Uluntu',
+                'events': 'Iivenkile',
+                'about': 'Malunga',
+                'safety': 'Ukhuseleko',
+                'assessment': 'Uvavanyo',
+                'education': 'Imfundo',
+                'login': 'Admin'
+            },
+            af: {
+                'home': 'Tuis',
+                'report': 'Rapporteer',
+                'support': 'Ondersteuning',
+                'stories': 'Stories',
+                'library': 'Hulpbronne',
+                'community': 'Gemeenskap',
+                'events': 'Gebeure',
+                'about': 'Oor',
+                'safety': 'Veiligheid',
+                'assessment': 'Risiko',
+                'education': 'Onderrig',
+                'login': 'Admin'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations();
+            updateLanguageSelector();
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        function updateLanguageSelector() {
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = currentLanguage;
+            }
+        }
+        
+        // Emergency Contact Functions
+        function simulateCall(number) {
+            alert(`Calling ${number}...\n\nIn a real implementation, this would initiate a phone call.\n\nFor immediate emergencies, always call 10111 first.`);
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('emergency_call_attempt');
+                analytics.trackFeatureUse(`call_${number}`);
+            }
+        }
+        
+        function downloadContactCard() {
+            alert('Downloading emergency contact card...\n\nKeep this printed copy in a safe, accessible location.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('contact_card_download');
+            }
+        }
+        
+        function addToPhoneContacts() {
+            alert('Adding emergency contacts to your phone...\n\nThis feature would save all critical numbers to your device.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('contacts_save_to_phone');
+            }
+        }
+        
+        function createPersonalContactList() {
+            alert('Creating personal contact list...\n\nYou can add trusted contacts and support services.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('personal_contact_list_created');
+            }
+        }
+        
+        function downloadEmergencyPlan() {
+            alert('Downloading emergency plan template...\n\nCustomize this plan with your specific safety information.');
+            
+            // ANALYTICS TRACKING - INTEGRATED
+            if (typeof analytics !== 'undefined') {
+                analytics.trackFeatureUse('emergency_plan_download');
+            }
+        }
+    </script>
+</body>
+</html>
