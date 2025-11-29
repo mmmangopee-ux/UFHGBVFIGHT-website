@@ -1,305 +1,517 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBV Safe Corner - Emergency Support & Resources for Gender-Based Violence</title>
-    <meta name="description" content="24/7 GBV emergency support, safe resources, and community healing. Anonymous help, crisis intervention, and professional counseling for gender-based violence survivors in South Africa.">
-    <meta name="keywords" content="GBV help, gender-based violence, emergency support, South Africa, domestic violence, crisis intervention, anonymous reporting">
-    <meta name="theme-color" content="#8B008B">
+    <title>GBV Safe Corner - Support for Gender-Based Violence Survivors</title>
+    <meta name="description" content="Safe, confidential support for GBV survivors in South Africa. Emergency help, counseling, legal rights, and shelter finder.">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="GBV Safe Corner - Emergency Support & Healing Resources">
-    <meta property="og:description" content="24/7 anonymous GBV support, crisis intervention, and safe resources for survivors in South Africa.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gbvsafecorner.org">
-    <meta property="og:image" content="https://gbvsafecorner.org/assets/og-image.jpg">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GBV Safe Corner - Emergency Support">
-    <meta name="twitter:description" content="24/7 GBV crisis support and safe resources">
+    <!-- Security Meta Tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <!-- Canonical -->
-    <link rel="canonical" href="https://gbvsafecorner.org">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <!-- CSS Integration Point -->
+    <!-- YOUR EXISTING STYLES WILL BE INTEGRATED HERE -->
+    <style>
+        /* TEMPORARY STYLES - TO BE REPLACED WITH YOUR styles.css */
+        :root {
+            --primary: #8e44ad;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .emergency-exit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .emergency-exit:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+        
+        .language-selector {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .hero {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="%238e44ad"><rect width="1200" height="600" fill="%238e44ad"/></svg>') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .emergency-section {
+            background: var(--danger);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin: 3rem 0;
+        }
+        
+        .emergency-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Emergency Quick Exit -->
-    <div class="emergency-bar" id="emergencyBar">
-        <div class="container">
-            <span>🚨 Need immediate help?</span>
-            <button class="emergency-exit-btn" onclick="emergencyExit()">Quick Exit</button>
-            <button class="emergency-help-btn" onclick="showEmergencyHelp()">Get Help Now</button>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo">🛡️</span>
-                <span class="brand-text">GBV Safe Corner</span>
-            </div>
+    <!-- Emergency Exit Button -->
+    <button class="emergency-exit" id="emergencyExit">🚨 Emergency Exit</button>
+    
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">GBV Safe Corner</div>
             
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="emergency-services.html" class="nav-link">Emergency Help</a>
-                <a href="safety-plan.html" class="nav-link">Safety Plan</a>
-                <a href="support.html" class="nav-link">Support</a>
-                <a href="resources.html" class="nav-link">Resources</a>
-                <a href="community.html" class="nav-link">Community</a>
-                <a href="education-hub.html" class="nav-link">Education</a>
-            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <select class="language-selector" id="languageSelector">
+                        <option value="en">English</option>
+                        <option value="zu">Zulu</option>
+                        <option value="xh">Xhosa</option>
+                        <option value="af">Afrikaans</option>
+                    </select>
+                </li>
+            </ul>
         </div>
-    </nav>
-
+    </header>
+    
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">You Are Not Alone</h1>
-                <p class="hero-subtitle">Safe, confidential support for gender-based violence survivors. 24/7 emergency help, resources, and a caring community.</p>
-                
-                <div class="hero-actions">
-                    <button class="btn btn-primary" onclick="location.href='emergency-services.html'">
-                        🚨 Get Emergency Help
-                    </button>
-                    <button class="btn btn-secondary" onclick="location.href='safety-plan.html'">
-                        🛡️ Create Safety Plan
-                    </button>
-                    <button class="btn btn-outline" onclick="location.href='support.html'">
-                        💬 Talk to Someone
-                    </button>
-                </div>
-                
-                <div class="emergency-contacts">
-                    <div class="contact-item">
-                        <strong>GBV Emergency:</strong> 0800 428 428
-                    </div>
-                    <div class="contact-item">
-                        <strong>Police:</strong> 10111
-                    </div>
-                    <div class="contact-item">
-                        <strong>Lifeline:</strong> 0861 322 322
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="safe-space-icon">💜</div>
+        <div class="hero-content">
+            <h1 id="hero-title">Safe, Confidential Support for GBV Survivors</h1>
+            <p id="hero-subtitle">You are not alone. We provide emergency assistance, counseling, legal information, and shelter finder services across South Africa.</p>
+            <div class="cta-buttons">
+                <a href="emergency-contacts.html" class="btn btn-primary">🚨 Get Emergency Help</a>
+                <a href="risk-assessment.html" class="btn btn-secondary">📋 Safety Assessment</a>
+                <a href="shelter-finder.html" class="btn btn-secondary">🏠 Find Shelter</a>
             </div>
         </div>
     </section>
-
-    <!-- Quick Help Section -->
-    <section class="quick-help">
-        <div class="container">
-            <h2 class="section-title">Immediate Support Options</h2>
-            <div class="help-grid">
-                <div class="help-card" onclick="location.href='emergency-services.html'">
-                    <div class="help-icon">🚨</div>
-                    <h3>Emergency Services</h3>
-                    <p>Immediate crisis intervention, medical help, and police assistance</p>
-                    <span class="help-arrow">→</span>
-                </div>
-                
-                <div class="help-card" onclick="location.href='safety-plan.html'">
-                    <div class="help-icon">🛡️</div>
-                    <h3>Safety Planning</h3>
-                    <p>Create personalized safety plans for different situations</p>
-                    <span class="help-arrow">→</span>
-                </div>
-                
-                <div class="help-card" onclick="location.href='counseling.html'">
-                    <div class="help-icon">💬</div>
-                    <h3>Professional Counseling</h3>
-                    <p>Connect with trained counselors and support groups</p>
-                    <span class="help-arrow">→</span>
-                </div>
-                
-                <div class="help-card" onclick="location.href='shelter-finder.html'">
-                    <div class="help-icon">🏠</div>
-                    <h3>Find Shelter</h3>
-                    <p>Locate safe shelters and temporary accommodation</p>
-                    <span class="help-arrow">→</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Features Section -->
     <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose GBV Safe Corner</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Completely Anonymous</h3>
-                    <p>Your privacy and safety are our top priority. No personal information required.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3>Multi-Language Support</h3>
-                    <p>Available in English, Zulu, Xhosa, Afrikaans, and other South African languages.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Optimized</h3>
-                    <p>Access help quickly and discreetly from any device, anywhere.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🆓</div>
-                    <h3>Completely Free</h3>
-                    <p>All services, resources, and support are 100% free of charge.</p>
-                </div>
+        <h2 class="section-title" id="features-title">How We Can Help</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚨</div>
+                <h3 id="feature1-title">Emergency Assistance</h3>
+                <p id="feature1-desc">Immediate help with emergency contacts, safety planning, and risk assessment tools.</p>
+                <a href="emergency-contacts.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 id="feature2-title">Anonymous Reporting</h3>
+                <p id="feature2-desc">Report incidents anonymously with our secure system that protects your identity.</p>
+                <a href="report.html" class="btn btn-primary">Report Safely</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3 id="feature3-title">Shelter Finder</h3>
+                <p id="feature3-desc">Find safe shelters and temporary accommodation across South Africa.</p>
+                <a href="shelter-finder.html" class="btn btn-primary">Find Shelter</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3 id="feature4-title">Legal Rights & Support</h3>
+                <p id="feature4-desc">Understand your legal rights and access legal support services.</p>
+                <a href="legal-rights.html" class="btn btn-primary">Know Your Rights</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 id="feature5-title">Counseling Services</h3>
+                <p id="feature5-desc">Access professional counseling and emotional support services.</p>
+                <a href="counseling.html" class="btn btn-primary">Get Support</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 id="feature6-title">Community & Events</h3>
+                <p id="feature6-desc">Join support groups, workshops, and community events for survivors.</p>
+                <a href="events.html" class="btn btn-primary">Join Community</a>
             </div>
         </div>
     </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="helplineCalls">10,000+</div>
-                    <div class="stat-label">Calls Assisted</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="safetyPlans">5,000+</div>
-                    <div class="stat-label">Safety Plans Created</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="supportSessions">15,000+</div>
-                    <div class="stat-label">Support Sessions</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Available Support</div>
-                </div>
-            </div>
-        </div>
+    
+    <!-- Emergency Section -->
+    <section class="emergency-section">
+        <h2 id="emergency-title">In Immediate Danger?</h2>
+        <p id="emergency-desc">Call the South African GBV Emergency Helpline now</p>
+        <div style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">0800 428 428</div>
+        <a href="emergency-contacts.html" class="btn btn-secondary">See All Emergency Contacts</a>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Get Help?</h2>
-            <p>Take the first step towards safety and healing. We're here to support you every step of the way.</p>
-            <div class="cta-actions">
-                <button class="btn btn-large" onclick="location.href='emergency-services.html'">
-                    🚨 Start Getting Help Now
-                </button>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="logo">🛡️</span>
-                        <span class="brand-text">GBV Safe Corner</span>
-                    </div>
-                    <p>Providing safe, confidential support for GBV survivors across South Africa.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="emergency-services.html">Emergency Help</a>
-                    <a href="safety-plan.html">Safety Planning</a>
-                    <a href="resources.html">Resources</a>
-                    <a href="support.html">Support Services</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <a href="counseling.html">Counseling</a>
-                    <a href="shelter-finder.html">Find Shelter</a>
-                    <a href="legal-rights.html">Legal Rights</a>
-                    <a href="community.html">Community</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="contact-info">
-                        <div>📞 0800 428 428</div>
-                        <div>📧 help@gbvsafecorner.org</div>
-                        <div>🕒 24/7 Support</div>
-                    </div>
-                </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GBV Safe Corner</h3>
+                <p>Providing safe, confidential support for GBV survivors across South Africa.</p>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 GBV Safe Corner. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="contact.html">Contact Us</a>
-                </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-section">
+                <h3>Emergency Resources</h3>
+                <ul>
+                    <li><a href="emergency-contacts.html">Emergency Contacts</a></li>
+                    <li><a href="risk-assessment.html">Risk Assessment</a></li>
+                    <li><a href="safety-plan.html">Safety Planning</a></li>
+                    <li><a href="shelter-finder.html">Find a Shelter</a></li>
+                    <li><a href="legal-rights.html">Legal Rights</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📞 0800 428 428</li>
+                    <li>✉️ help@gbvsafecorner.org</li>
+                    <li>📍 South Africa</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 GBV Safe Corner. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </footer>
 
-    <!-- Emergency Help Modal -->
-    <div class="modal" id="emergencyModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🚨 Emergency Help</h3>
-                <button class="modal-close" onclick="closeModal('emergencyModal')">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="emergency-numbers">
-                    <div class="emergency-number">
-                        <strong>GBV Command Centre</strong>
-                        <div class="number">0800 428 428</div>
-                        <button class="btn-call" onclick="callNumber('0800428428')">Call Now</button>
-                    </div>
-                    <div class="emergency-number">
-                        <strong>Police Emergency</strong>
-                        <div class="number">10111</div>
-                        <button class="btn-call" onclick="callNumber('10111')">Call Now</button>
-                    </div>
-                    <div class="emergency-number">
-                        <strong>Lifeline Counseling</strong>
-                        <div class="number">0861 322 322</div>
-                        <button class="btn-call" onclick="callNumber('0861322322')">Call Now</button>
-                    </div>
-                </div>
-                <div class="emergency-actions">
-                    <button class="btn btn-primary" onclick="location.href='safety-plan.html'">
-                        🛡️ Create Safety Plan
-                    </button>
-                    <button class="btn btn-secondary" onclick="location.href='shelter-finder.html'">
-                        🏠 Find Safe Shelter
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
+    <!-- JavaScript Integration Point -->
+    <!-- YOUR EXISTING SCRIPT.JS WILL BE INTEGRATED HERE -->
+    <script>
+        // TEMPORARY JAVASCRIPT - TO BE REPLACED WITH YOUR script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Emergency Exit Functionality
+            const emergencyExit = document.getElementById('emergencyExit');
+            emergencyExit.addEventListener('click', function() {
+                // Clear any sensitive data
+                localStorage.clear();
+                sessionStorage.clear();
+                
+                // Redirect to a safe website
+                window.location.replace('https://www.google.com');
+            });
+            
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Language Selector
+            const languageSelector = document.getElementById('languageSelector');
+            languageSelector.addEventListener('change', function() {
+                const selectedLang = this.value;
+                // In production, this would load the appropriate language file
+                console.log('Language changed to:', selectedLang);
+                // For demo purposes, we'll just show an alert
+                alert('Language feature ready for integration with your multi-language system');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.nav-container')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Security: Clear sensitive data on page unload
+            window.addEventListener('beforeunload', function() {
+                // Clear any temporary sensitive data
+                // This would be more comprehensive in production
+                sessionStorage.removeItem('sensitiveFormData');
+            });
+        });
+        
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
